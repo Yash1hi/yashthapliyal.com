@@ -1,44 +1,81 @@
-import React, { useEffect, useRef } from 'react';
 
-interface Skill {
-  name: string;
-  level: number; // 1-10
-  category: 'development' | 'design' | 'security' | 'other';
+import React, { useEffect, useRef } from 'react';
+import { 
+  Code, Camera, Wrench, Globe, Shield, Terminal, Server, Database, Figma, 
+  Image, FileText, Briefcase, CheckCircle, Network, Eye, Workflow
+} from 'lucide-react';
+
+interface SkillGroup {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  skills: string[];
 }
 
 const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  const skills: Skill[] = [
-    // Development
-    { name: 'JavaScript', level: 9, category: 'development' },
-    { name: 'TypeScript', level: 8, category: 'development' },
-    { name: 'React', level: 9, category: 'development' },
-    { name: 'Node.js', level: 8, category: 'development' },
-    { name: 'Python', level: 7, category: 'development' },
-    { name: 'SQL', level: 8, category: 'development' },
-    { name: 'AWS', level: 7, category: 'development' },
-    { name: 'Docker', level: 7, category: 'development' },
-    
-    // Design
-    { name: 'UI/UX Design', level: 8, category: 'design' },
-    { name: 'Figma', level: 8, category: 'design' },
-    { name: 'Adobe Photoshop', level: 9, category: 'design' },
-    { name: 'Adobe Lightroom', level: 9, category: 'design' },
-    { name: 'Typography', level: 7, category: 'design' },
-    { name: 'Composition', level: 8, category: 'design' },
-    
-    // Security
-    { name: 'Network Security', level: 8, category: 'security' },
-    { name: 'Penetration Testing', level: 7, category: 'security' },
-    { name: 'Vulnerability Assessment', level: 8, category: 'security' },
-    { name: 'Security Auditing', level: 7, category: 'security' },
-    { name: 'Cryptography', level: 6, category: 'security' },
-    
-    // Other
-    { name: 'Photography', level: 9, category: 'other' },
-    { name: 'Technical Writing', level: 8, category: 'other' },
-    { name: 'Project Management', level: 7, category: 'other' },
+  const skillGroups: SkillGroup[] = [
+    {
+      id: 'development',
+      label: 'Development',
+      icon: <Code className="h-6 w-6" />,
+      skills: [
+        'JavaScript / TypeScript',
+        'React & React Native',
+        'Node.js',
+        'Python',
+        'SQL & NoSQL Databases',
+        'AWS & Cloud Infrastructure',
+        'Docker & Containerization',
+        'REST & GraphQL APIs'
+      ]
+    },
+    {
+      id: 'design',
+      label: 'Design',
+      icon: <Figma className="h-6 w-6" />,
+      skills: [
+        'UI/UX Design',
+        'Figma & Design Systems',
+        'Adobe Creative Suite',
+        'Typography',
+        'Composition',
+        'Color Theory',
+        'Responsive Design',
+        'Prototyping'
+      ]
+    },
+    {
+      id: 'security',
+      label: 'Security',
+      icon: <Shield className="h-6 w-6" />,
+      skills: [
+        'Network Security',
+        'Penetration Testing',
+        'Vulnerability Assessment',
+        'Security Auditing',
+        'Cryptography',
+        'Authentication Systems',
+        'Secure Coding Practices',
+        'Threat Modeling'
+      ]
+    },
+    {
+      id: 'other',
+      label: 'Other Skills',
+      icon: <Briefcase className="h-6 w-6" />,
+      skills: [
+        'Photography',
+        'Technical Writing',
+        'Project Management',
+        'Content Creation',
+        'Data Analysis',
+        'Communication',
+        'Problem Solving',
+        'Team Leadership'
+      ]
+    },
   ];
 
   useEffect(() => {
@@ -65,41 +102,30 @@ const Skills = () => {
     };
   }, []);
 
-  const categories = [
-    { id: 'development', label: 'Development' },
-    { id: 'design', label: 'Design' },
-    { id: 'security', label: 'Security' },
-    { id: 'other', label: 'Other Skills' },
-  ];
-
   return (
-    <section id="skills" className="py-16 md:py-24 bg-[#f9f9f9]" ref={sectionRef}>
+    <section id="skills" className="py-16 md:py-24 bg-gray-100" ref={sectionRef}>
       <div className="container px-4 mx-auto">
-        <h2 className="section-heading">Skills</h2>
+        <h2 className="section-heading text-gray-800">Skills</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {categories.map((category) => (
-            <div key={category.id} className="fade-in-section brutalist-card">
-              <h3 className="font-mono text-xl font-bold mb-6 pb-2 border-b border-black">
-                {category.label}
-              </h3>
-              <div className="space-y-4">
-                {skills
-                  .filter((skill) => skill.category === category.id)
-                  .map((skill) => (
-                    <div key={skill.name} className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-sm">{skill.name}</span>
-                        <span className="text-xs">{skill.level}/10</span>
-                      </div>
-                      <div className="h-2 w-full bg-[#eee] border border-black">
-                        <div 
-                          className="h-full bg-black" 
-                          style={{ width: `${(skill.level / 10) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
+          {skillGroups.map((group) => (
+            <div key={group.id} className="fade-in-section brutalist-card bg-white shadow-md">
+              <div className="flex items-center gap-3 mb-6 pb-2 border-b border-gray-300">
+                <div className="text-gray-700">
+                  {group.icon}
+                </div>
+                <h3 className="font-mono text-xl font-bold text-gray-800">
+                  {group.label}
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {group.skills.map((skill) => (
+                  <div key={skill} className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 transition-colors">
+                    <CheckCircle className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">{skill}</span>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
