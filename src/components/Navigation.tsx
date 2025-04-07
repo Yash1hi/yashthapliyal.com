@@ -27,12 +27,12 @@ const Navigation = () => {
     <header
       className={cn(
         'fixed top-0 z-50 w-full transition-all duration-300 ease-in-out',
-        isScrolled ? 'bg-white border-b border-black py-3' : 'py-6'
+        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-3' : 'py-6'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         <a href="#" className="font-mono text-xl font-bold">
-          <span className="highlight">Portfolio</span>
+          <span className="bg-black text-white px-2 py-1 rounded-md">Yash Thapliyal</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -42,7 +42,7 @@ const Navigation = () => {
               <li key={item.name}>
                 <a 
                   href={item.href}
-                  className="font-mono text-sm uppercase tracking-wider hover:underline"
+                  className="font-mono text-sm uppercase tracking-wider hover:text-gray-600 transition-colors"
                 >
                   {item.name}
                 </a>
@@ -53,7 +53,7 @@ const Navigation = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden font-mono border border-black px-3 py-2"
+          className="md:hidden font-mono border border-black px-3 py-2 rounded-md hover:bg-black hover:text-white transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? 'CLOSE' : 'MENU'}
@@ -62,13 +62,13 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <nav className="md:hidden border-t border-black bg-white">
+        <nav className="md:hidden border-t border-black/30 bg-white/95 backdrop-blur-sm">
           <ul className="container mx-auto px-4 py-4">
             {navItems.map((item) => (
               <li key={item.name} className="py-2 border-b border-gray-200 last:border-b-0">
                 <a 
                   href={item.href}
-                  className="font-mono text-sm uppercase tracking-wider block"
+                  className="font-mono text-sm uppercase tracking-wider block transition-colors hover:text-gray-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

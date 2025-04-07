@@ -69,9 +69,12 @@ export default {
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: '0.75rem',
+				md: '0.5rem',
+				sm: '0.25rem'
+			},
+			boxShadow: {
+				'soft': '0 4px 15px -3px rgba(0, 0, 0, 0.1), 0 2px 8px -3px rgba(0, 0, 0, 0.05)',
 			},
 			keyframes: {
 				'accordion-down': {
