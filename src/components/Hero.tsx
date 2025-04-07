@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-16 noise-bg">
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className={`transition-all duration-700 delay-300 ${loaded ? 'opacity-100' : 'opacity-0 -translate-y-8'}`}>
             <h1 className="font-mono text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900">
               Yash<br />Thapliyal
@@ -38,11 +38,10 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className={`grid grid-cols-2 gap-2 md:gap-4 transition-all duration-700 delay-500 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
-            <div className="h-40 md:h-64 bg-gray-800 rounded-lg"></div>
-            <div className="h-64 md:h-80 border border-gray-400 bg-gray-100 rounded-lg"></div>
-            <div className="h-64 md:h-80 col-span-2 border border-gray-400 bg-gray-100 rounded-lg flex items-center justify-center">
-              <p className="font-mono text-gray-700">Making, breaking, and everything in between.</p>
+          <div className={`flex justify-center transition-all duration-700 delay-500 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-300 bg-gray-100 flex items-center justify-center">
+              <div className="text-gray-400 font-mono">Your Photo</div>
+              <div className="absolute inset-0 bg-gray-200 opacity-20"></div>
             </div>
           </div>
         </div>

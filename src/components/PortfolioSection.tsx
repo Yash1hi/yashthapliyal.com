@@ -52,23 +52,23 @@ const PortfolioSection = ({ title, id, items }: PortfolioSectionProps) => {
           {items.map((item) => (
             <div 
               key={item.id} 
-              className="fade-in-section brutalist-card group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all"
+              className="fade-in-section brutalist-card group hover:shadow-md transition-all duration-300"
             >
               {item.imageUrl && (
-                <div className="h-48 md:h-56 overflow-hidden border-b border-black">
+                <div className="h-48 md:h-56 overflow-hidden border-b border-gray-200 rounded-t-md">
                   <img 
                     src={item.imageUrl} 
                     alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>
               )}
-              <div className="p-4 md:p-6">
+              <div className="p-4 md:p-6 transition-all duration-300 group-hover:bg-gray-100">
                 <h3 className="font-mono text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-sm mb-4">{item.description}</p>
+                <p className="text-sm mb-4 text-gray-600">{item.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {item.tags.map((tag, index) => (
-                    <span key={index} className="text-xs border border-black px-2 py-1 font-mono">
+                    <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-sm font-mono border border-gray-300 group-hover:bg-white">
                       {tag}
                     </span>
                   ))}
@@ -78,9 +78,12 @@ const PortfolioSection = ({ title, id, items }: PortfolioSectionProps) => {
                     href={item.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="font-mono text-sm underline hover:no-underline"
+                    className="font-mono text-sm text-gray-700 hover:text-black transition-colors duration-300 inline-flex items-center"
                   >
-                    View Project →
+                    View Project
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                   </a>
                 )}
               </div>
