@@ -11,16 +11,16 @@ const Footer = () => {
           </p>
           
           <div className="mt-4 md:mt-0 flex space-x-6">
-            <a href="#" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <a href="https://www.instagram.com/yash1photos/" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
               Instagram
             </a>
-            <a href="#" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
-              Dribbble
+            <a href="https://substack.com/@yash1hi" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
+              Substack
             </a>
-            <a href="#" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <a href="https://github.com/Yash1hi" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
               GitHub
             </a>
-            <a href="#" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <a href="https://www.linkedin.com/in/yash1hi/" className="font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors">
               LinkedIn
             </a>
           </div>

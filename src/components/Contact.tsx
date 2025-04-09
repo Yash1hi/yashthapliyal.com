@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -9,29 +9,53 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this data to your backend/email service
-    console.log('Form submitted:', formData);
-    
-    // Show success toast
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Replace these with your actual EmailJS credentials
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message
+      };
+
+      await emailjs.send(
+        'PersonalWebsiteEmail', // Replace with your service ID
+        'template_8tnizvf', // Replace with your template ID
+        templateParams,
+        'V4jN3130n0_JlkWI6' // Replace with your public key
+      );
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "There was an error sending your message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,7 +81,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">EMAIL</p>
-                  <a href="mailto:hello@example.com" className="text-lg hover:underline">hello@example.com</a>
+                  <a href="mailto:yash.thapliyal.007@gmail.com" className="text-lg hover:underline">yash.thapliyal.007@gmail.com</a>
                 </div>
               </div>
 
@@ -69,7 +93,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">GITHUB</p>
-                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">github.com/username</a>
+                  <a href="https://github.com/Yash1hi" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">github.com/Yash1hi</a>
                 </div>
               </div>
 
@@ -83,7 +107,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">LINKEDIN</p>
-                  <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">linkedin.com/in/username</a>
+                  <a href="https://www.linkedin.com/in/yash1hi/" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">linkedin.com/in/yash1hi</a>
                 </div>
               </div>
             </div>
@@ -130,8 +154,12 @@ const Contact = () => {
                 ></textarea>
               </div>
               
-              <button type="submit" className="brutalist-button w-full">
-                SEND MESSAGE
+              <button 
+                type="submit" 
+                className="brutalist-button w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
               </button>
             </form>
           </div>

@@ -26,7 +26,7 @@ const Skills = () => {
         'Node.js',
         'Python',
         'SQL & NoSQL Databases',
-        'AWS & Cloud Infrastructure',
+        'C++, C#',
         'Docker & Containerization',
         'REST & GraphQL APIs'
       ]
@@ -39,11 +39,11 @@ const Skills = () => {
         'UI/UX Design',
         'Figma & Design Systems',
         'Adobe Creative Suite',
-        'Typography',
-        'Composition',
-        'Color Theory',
-        'Responsive Design',
-        'Prototyping'
+        'Canva',
+        'Graphic Design',
+        'Social Media Content Creation',
+        'Prototyping',
+        'Video Editing',
       ]
     },
     {
@@ -72,7 +72,7 @@ const Skills = () => {
         'Content Creation',
         'Data Analysis',
         'Communication',
-        'Problem Solving',
+        'Business Development',
         'Team Leadership'
       ]
     },

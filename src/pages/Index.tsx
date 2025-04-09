@@ -12,49 +12,52 @@ const Index = () => {
   const photographyProjects = [
     {
       id: 1,
-      title: "Urban Minimalism",
-      description: "A series exploring the clean lines and stark contrasts of urban architecture.",
-      tags: ["Black & White", "Architecture", "Minimalism"],
-      imageUrl: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80",
+      title: "Wedding Photography",
+      description: "Wedding done at Sunrise Amphithear, Boulder.",
+      tags: [],
+      imageUrl: "/Wedding-Photo.jpg",
+      link: "https://www.instagram.com/p/C9T_1u4PQZg/?img_index=1",
     },
     {
       id: 2,
-      title: "Light & Shadow",
-      description: "Capturing the interplay between natural light and structural elements.",
-      tags: ["Contrast", "Composition", "Lighting"],
-      imageUrl: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=800&q=80",
+      title: "Graduation Photography",
+      description: "Graduation photography at the University of Colorado, Boulder.",
+      tags: [],
+      imageUrl: "/Grad-Photo.jpg",
+      link: "https://www.instagram.com/p/C62bwQ6L6vh/?img_index=1",
     },
     {
       id: 3,
-      title: "Abstract Reflections",
-      description: "Exploring reflective surfaces and abstract forms in modern architecture.",
-      tags: ["Abstract", "Reflection", "Urban"],
-      imageUrl: "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?auto=format&fit=crop&w=800&q=80",
+      title: "Fashion/Creative Photography",
+      description: "Fashion photography as treasurer of ROAM Boulder; general creative photography.",
+      tags: [],
+      imageUrl: "/Ruthless-Photo.jpg",
+      link: "https://www.instagram.com/p/C4ca2w1OCYQ/?img_index=1",
     }
   ];
 
   const softwareProjects = [
     {
       id: 1,
-      title: "Secure Authentication System",
-      description: "A robust authentication system with multi-factor authentication built using React and Node.js.",
-      tags: ["React", "Node.js", "Security"],
-      link: "#",
+      title: "Trail of Bits Resource Page",
+      description: "A fully responsive, auto-updating, cross-app, resource page for Trail of Bits; built with no frameworks.",
+      tags: ["Javascript", "HTML", "CSS"],
+      link: "https://www.trailofbits.com/opensource/",
     },
     {
       id: 2,
-      title: "E-commerce Platform",
-      description: "Full-stack e-commerce solution with secure payment processing and inventory management.",
-      tags: ["TypeScript", "Express", "PostgreSQL"],
-      link: "#",
+      title: "Logical Proof Generator",
+      description: "Tooling that generates entire proofs using A* search, including all intermediate steps. Constructed new grammar within Scala for scalability.",
+      tags: ["Scala"],
+      link: "https://github.com/Yash1hi/Proof-Generator-3434",
     },
     {
       id: 3,
-      title: "Real-time Analytics Dashboard",
-      description: "Interactive dashboard for monitoring system metrics and user behavior in real-time.",
-      tags: ["Data Visualization", "WebSockets", "React"],
-      link: "#",
-    }
+      title: "Full Stack Medication Management System",
+      description: "Full stack web application for medication trackking and management; integrated with medication dispenser.",
+      tags: ["NodeJS", "React", "Twilio", "PostgreSQL", "Arduino"],
+      link: "https://www.linkedin.com/posts/suctuk_i-was-fortunate-to-participate-in-the-t9hacks-ugcPost-7298820077385039872-Lhxf",
+    },  
   ];
 
   const writingProjects = [
@@ -119,12 +122,6 @@ const Index = () => {
       <Hero />
       
       <div id="portfolio" className="bg-white">
-        <PortfolioSection 
-          title="Photography" 
-          id="photography" 
-          items={photographyProjects} 
-        />
-        
         <div className="bg-[#f9f9f9]">
           <PortfolioSection 
             title="Software" 
@@ -134,10 +131,16 @@ const Index = () => {
         </div>
         
         <PortfolioSection 
+          title="Photography" 
+          id="photography" 
+          items={photographyProjects} 
+        />
+
+        {/* <PortfolioSection 
           title="Writing" 
           id="writing" 
           items={writingProjects} 
-        />
+        /> */}
       </div>
       
       <Skills />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
-  const roles = ['Software Developer', 'Cyber Security Specialist', 'Photographer', 'Designer'];
+  const roles = ['Software Developer', 'Hacker', 'Photographer', 'Designer', 'Scholar'];
   const [currentRole, setCurrentRole] = useState(0);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const Hero = () => {
             </div>
             <p className="mt-8 max-w-lg text-lg text-gray-700">
               Creating at the intersection of technology and art. Building software solutions, 
-              ensuring digital security, capturing moments through photography, and designing 
-              experiences that matter.
+              enhancing digital security, capturing moments through photography, designing 
+              next generation products, and learning throughout the process.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a href="#contact" className="brutalist-button">Get in Touch</a>
@@ -40,8 +40,9 @@ const Hero = () => {
           
           <div className={`flex justify-center transition-all duration-700 delay-500 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-300 bg-gray-100 flex items-center justify-center">
-              <div className="text-gray-400 font-mono">Your Photo</div>
-              <div className="absolute inset-0 bg-gray-200 opacity-20"></div>
+              {/* <div className="text-gray-400 font-mono">Your Photo</div>
+              <div className="absolute inset-0 bg-gray-200 opacity-20"></div> */}
+              <img src="/headshot.jpeg" alt="Profile" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
