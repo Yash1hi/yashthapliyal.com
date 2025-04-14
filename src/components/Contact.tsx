@@ -63,7 +63,7 @@ const Contact = () => {
       <div className="container px-4 mx-auto">
         <h2 className="section-heading">Contact</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-12">
           <div className="fade-in-section">
             <h3 className="font-mono text-2xl font-bold mb-4">Let's Connect</h3>
             <p className="mb-6">
@@ -71,7 +71,7 @@ const Contact = () => {
               Feel free to reach out and I'll get back to you as soon as possible.
             </p>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="flex items-start">
                 <div className="w-8 h-8 flex items-center justify-center border border-black mr-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -113,55 +113,69 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="fade-in-section">
-            <form onSubmit={handleSubmit} className="brutalist-card">
-              <div className="mb-4">
-                <label htmlFor="name" className="block font-mono text-sm mb-2">NAME</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-black p-3 focus:ring-0 focus:outline-none font-mono"
-                />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+            <div className="fade-in-section h-full">
+              <form onSubmit={handleSubmit} className="brutalist-card h-full">
+                <div className="mb-3">
+                  <label htmlFor="name" className="block font-mono text-sm mb-1">NAME</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-black p-2 focus:ring-0 focus:outline-none font-mono"
+                  />
+                </div>
+                
+                <div className="mb-3">
+                  <label htmlFor="email" className="block font-mono text-sm mb-1">EMAIL</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-black p-2 focus:ring-0 focus:outline-none font-mono"
+                  />
+                </div>
+                
+                <div className="mb-3">
+                  <label htmlFor="message" className="block font-mono text-sm mb-1">MESSAGE</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="w-full border border-black p-2 focus:ring-0 focus:outline-none font-mono"
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="brutalist-button w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
+                </button>
+              </form>
+            </div>
+
+            <div className="fade-in-section h-full">
+              <div className="brutalist-card h-full">
+                <iframe
+                  src="https://calendar.notion.so/meet/yashthapliyal/v219b3lyx"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  className="border border-black rounded-md"
+                ></iframe>
               </div>
-              
-              <div className="mb-4">
-                <label htmlFor="email" className="block font-mono text-sm mb-2">EMAIL</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-black p-3 focus:ring-0 focus:outline-none font-mono"
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="message" className="block font-mono text-sm mb-2">MESSAGE</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full border border-black p-3 focus:ring-0 focus:outline-none font-mono"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                className="brutalist-button w-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
