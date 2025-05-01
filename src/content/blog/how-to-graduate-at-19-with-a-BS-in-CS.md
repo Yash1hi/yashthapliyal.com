@@ -102,3 +102,10 @@ I'm really glad I chose this path—it showed me that the standard way isn't alw
 Shameless plug: I'm currently looking for post-grad opportunities. If you're hiring, feel free to reach out—chances are, if you've read this far, you know I'm someone who works hard, thinks independently, and isn't afraid to take the unconventional route.
 
 If you like my writing feel free to reach out, would love to hear from you!
+
+[View a table of every class I've taken for this degree](https://datawrapper.dwcdn.net/TpWd6/2/)
+
+
+
+---
+

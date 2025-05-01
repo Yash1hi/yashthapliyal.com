@@ -22,6 +22,19 @@ const BlogPost = () => {
     loadPost();
   }, [slug]);
 
+  // Custom renderer for iframes and other HTML elements
+  const customRenderers = {
+    div: ({ className, children, ...props }) => {
+      if (className === 'iframe-container') {
+        return <div className="w-full my-8" {...props}>{children}</div>;
+      }
+      return <div className={className} {...props}>{children}</div>;
+    },
+    iframe: ({ node, ...props }) => {
+      return <iframe {...props} className="w-full aspect-[16/9]" />;
+    }
+  };
+
   if (loading) {
     return (
       <BlogLayout>
@@ -51,7 +64,10 @@ const BlogPost = () => {
             {new Date(post.date).toLocaleDateString()} • {post.tags.join(', ')}
           </div>
           <div className="prose lg:prose-xl [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-2xl max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={customRenderers}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
