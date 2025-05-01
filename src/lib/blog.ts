@@ -4,7 +4,8 @@ import frontMatter from 'front-matter';
 // Import all markdown files
 const blogPosts = {
   // 'getting-started-with-react': () => import('@/content/blog/getting-started-with-react.md?raw'),
-  'how-to-graduate-at-19-with-a-BS-in-CS': () => import('@/content/blog/how-to-graduate-at-19-with-a-BS-in-CS.md?raw')
+  'how-to-graduate-at-19-with-a-BS-in-CS': () => import('@/content/blog/how-to-graduate-at-19-with-a-BS-in-CS.md?raw'),
+  'every-CU-CS-class-rated': () => import('@/content/blog/every-CU-CS-class-rated.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {

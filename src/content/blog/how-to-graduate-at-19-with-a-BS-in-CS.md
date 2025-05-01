@@ -97,15 +97,13 @@ You're not on a set path. You're sailing in uncharted waters. Get good at spotti
 
 With all of these different paths, here is what my credit distribution and credit count by year looks like. Only about 50% of my credits required to graduate came from the institution I am graduating from.
 
+<div className="iframe-container">
+
 I'm really glad I chose this path—it showed me that the standard way isn't always the best fit. I put in a lot of work doing what I love (computer science), and while CU Boulder's CS program left a lot to be desired in terms of quality, I still had a full and meaningful college experience. Between clubs, side projects, internships, study abroad, friends, and travel, I feel like I was able to squeeze a lot out of a short amount of time.
 
 Shameless plug: I'm currently looking for post-grad opportunities. If you're hiring, feel free to reach out—chances are, if you've read this far, you know I'm someone who works hard, thinks independently, and isn't afraid to take the unconventional route.
 
 If you like my writing feel free to reach out, would love to hear from you!
-
-[View a table of every class I've taken for this degree](https://datawrapper.dwcdn.net/TpWd6/2/)
-
-
 
 ---
 
