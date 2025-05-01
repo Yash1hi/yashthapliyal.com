@@ -6,8 +6,8 @@ const P5Sketch = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Interactive Sketch</h1>
+      <div className="container mx-auto px-4 py-20">
+        {/* <h1 className="text-3xl font-bold mb-6">Interactive Sketch</h1> */}
         <div className="w-full aspect-video">
           <iframe 
             src="https://editor.p5js.org/yash.thapliyal.007/full/Ko7twdgmG"

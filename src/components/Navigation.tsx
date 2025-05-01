@@ -16,11 +16,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Photography', href: '#photography' },
-    { name: 'Software', href: '#software' },
-    { name: 'Writing', href: '#writing' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Photography', href: '/#photography' },
+    { name: 'Software', href: '/#software' },
+    { name: 'Skills', href: '/#skills' },
+    { name: 'Contact', href: '/#contact' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   return (
@@ -31,7 +31,7 @@ const Navigation = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <a href="#" className="font-mono text-xl font-bold">
+        <a href="/" className="font-mono text-xl font-bold">
           <span className="bg-black text-white px-2 py-1 rounded-md">Yash Thapliyal</span>
         </a>
 
