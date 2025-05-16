@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import P5Sketch from "./pages/P5Sketch";
 import BlogList from "./pages/blog/BlogList";
 import BlogPost from "./pages/blog/BlogPost";
+import CoffeeTracker from "./pages/CoffeeTracker";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/MrSqueebleEXE" element={<P5Sketch />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/coffee-tracker" element={<CoffeeTracker />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
