@@ -1,6 +1,6 @@
 ---
 title: "How to Graduate at 19 with a BS in Computer Science"
-date: "2024-03-20"
+date: "2025-04-28"
 description: "A personal journey of completing a 4-year Computer Science degree in 2 years at CU Boulder, with practical strategies and insights"
 tags: ["education", "computer science", "productivity", "career"]
 ---

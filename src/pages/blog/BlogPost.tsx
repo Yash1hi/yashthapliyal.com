@@ -50,7 +50,7 @@ const BlogPost = () => {
           <div className="text-gray-600 mb-8">
             {new Date(post.date).toLocaleDateString()} • {post.tags.join(', ')}
           </div>
-          <div className="prose lg:prose-xl [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-2xl [&>h2]:mt-8 [&>h2]:mb-4 max-w-none">
+          <div className="prose lg:prose-xl [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-2xl [&>h2]:mt-8 [&>h2]:mb-4 [&>a]:text-blue-600 [&>a]:underline [&>a]:hover:text-blue-800 [&>a]:transition-colors max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>
