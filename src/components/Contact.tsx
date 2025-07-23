@@ -168,7 +168,7 @@ const Contact = () => {
             <div className="fade-in-section h-full">
               <div className="brutalist-card h-full">
                 <iframe
-                  src="https://calendar.notion.so/meet/yashthapliyal/v219b3lyx"
+                  src="https://calendar.notion.so/meet/yashthapliyal/yash1hi"
                   width="100%"
                   height="100%"
                   frameBorder="0"

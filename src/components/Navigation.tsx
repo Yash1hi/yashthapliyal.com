@@ -16,7 +16,7 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Photography', href: '/photography' },
+    { name: 'Photography', href: '/yash1photos' },
     { name: 'Software', href: '/#software' },
     { name: 'Skills', href: '/#skills' },
     { name: 'Contact', href: '/#contact' },
