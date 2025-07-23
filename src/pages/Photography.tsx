@@ -15,8 +15,8 @@ const Photography = () => {
   useEffect(() => {
     document.title = "Photography Portfolio | Yash Thapliyal";
     
-    // Dynamically import all photos from the Portfolio-Photos-Compressed folder
-    const photoModules = import.meta.glob('/public/Portfolio-Photos-Compressed/*.{jpg,jpeg,png}', {
+    // Dynamically import all photos from the Portfolio-Photos-WebP folder
+    const photoModules = import.meta.glob('/public/Portfolio-Photos-WebP/*.webp', {
       eager: true,
       as: 'url'
     });

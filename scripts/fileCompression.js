@@ -8,15 +8,15 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const inputFolder = path.join(__dirname, '../public/Uncompressed-Photos'); // Path to uncompressed photos
-const outputFolder = path.join(__dirname, '../public/Portfolio-Photos-Compressed');
+const outputFolder = path.join(__dirname, '../public/Portfolio-Photos-WebP');
 const supportedFormats = ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.tif'];
 
 // Compression settings
 const compressionOptions = {
-  quality: 80, // JPEG quality (0-100)
-  format: 'jpeg', // Output format
-  progressive: true, // Progressive JPEG for better loading
-  mozjpeg: true, // Use mozjpeg for better compression
+  quality: 80, // WebP quality (0-100)
+  format: 'webp', // Output format
+  lossless: false, // Lossy compression for smaller file sizes
+  effort: 6, // Compression effort (0-6, higher = better compression but slower)
 };
 
 async function ensureDirectoryExists(dirPath) {
@@ -36,10 +36,10 @@ async function compressImage(inputPath, outputPath) {
     console.log(`Compressing: ${filename}`);
 
     await sharp(inputPath)
-      .jpeg({
+      .webp({
         quality: compressionOptions.quality,
-        progressive: compressionOptions.progressive,
-        mozjpeg: compressionOptions.mozjpeg,
+        lossless: compressionOptions.lossless,
+        effort: compressionOptions.effort,
       })
       .toFile(fullOutputPath);
 
