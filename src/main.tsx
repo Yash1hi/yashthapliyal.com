@@ -4,6 +4,7 @@ import App from './App.tsx'
 import './index.css'
 
 // Initialize Google Analytics
-ReactGA.initialize('G-93S6NQ22EZ') 
+const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID || 'G-93S6NQ22EZ';
+ReactGA.initialize(GA_TRACKING_ID); 
 
 createRoot(document.getElementById("root")!).render(<App />);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
+import { analytics } from '@/lib/analytics';
 
 interface Photo {
   id: number;
@@ -102,6 +103,7 @@ const Photography = () => {
   const openModal = (photo: Photo) => {
     setSelectedPhoto(photo);
     document.body.style.overflow = 'hidden';
+    analytics.trackPhotoModalOpen(photo.filename);
   };
 
   const closeModal = () => {
@@ -129,6 +131,7 @@ const Photography = () => {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-black hover:text-gray-700 transition-colors font-semibold"
+              onClick={() => analytics.trackInstagramClick()}
             >
               @yash1photos
             </a>

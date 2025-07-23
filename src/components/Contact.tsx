@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
+import { analytics } from '@/lib/analytics';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -14,11 +15,17 @@ const Contact = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Track form start on first interaction
+    if (!formData.name && !formData.email && !formData.message) {
+      analytics.trackContactFormStart();
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    analytics.trackContactFormSubmit();
 
     try {
       // Replace these with your actual EmailJS credentials
@@ -35,6 +42,8 @@ const Contact = () => {
         'V4jN3130n0_JlkWI6' // Replace with your public key
       );
 
+      analytics.trackContactFormSuccess();
+      
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -48,6 +57,8 @@ const Contact = () => {
       });
     } catch (error) {
       console.error('Error sending email:', error);
+      analytics.trackContactFormError(error instanceof Error ? error.message : 'Unknown error');
+      
       toast({
         title: "Error",
         description: "There was an error sending your message. Please try again later.",
@@ -81,7 +92,13 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">EMAIL</p>
-                  <a href="mailto:yash.thapliyal.007@gmail.com" className="text-lg hover:underline">yash.thapliyal.007@gmail.com</a>
+                  <a 
+                    href="mailto:yash.thapliyal.007@gmail.com" 
+                    className="text-lg hover:underline"
+                    onClick={() => analytics.trackExternalLink('mailto:yash.thapliyal.007@gmail.com', 'email')}
+                  >
+                    yash.thapliyal.007@gmail.com
+                  </a>
                 </div>
               </div>
 
@@ -93,7 +110,15 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">GITHUB</p>
-                  <a href="https://github.com/Yash1hi" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">github.com/Yash1hi</a>
+                  <a 
+                    href="https://github.com/Yash1hi" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-lg hover:underline"
+                    onClick={() => analytics.trackExternalLink('https://github.com/Yash1hi', 'github')}
+                  >
+                    github.com/Yash1hi
+                  </a>
                 </div>
               </div>
 
@@ -107,7 +132,15 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-mono text-sm">LINKEDIN</p>
-                  <a href="https://www.linkedin.com/in/yash1hi/" target="_blank" rel="noopener noreferrer" className="text-lg hover:underline">linkedin.com/in/yash1hi</a>
+                  <a 
+                    href="https://www.linkedin.com/in/yash1hi/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-lg hover:underline"
+                    onClick={() => analytics.trackExternalLink('https://www.linkedin.com/in/yash1hi/', 'linkedin')}
+                  >
+                    linkedin.com/in/yash1hi
+                  </a>
                 </div>
               </div>
             </div>
@@ -171,7 +204,7 @@ const Contact = () => {
                   src="https://calendar.notion.so/meet/yashthapliyal/yash1hi"
                   width="100%"
                   height="100%"
-                  frameBorder="0"
+                  style={{ border: 'none' }}
                   className="border border-black rounded-md"
                 ></iframe>
               </div>

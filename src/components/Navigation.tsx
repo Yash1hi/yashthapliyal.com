@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { analytics } from '@/lib/analytics';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,9 +17,9 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Photography', href: '/yash1photos' },
-    { name: 'Software', href: '/#software' },
-    { name: 'Skills', href: '/#skills' },
+    { name: 'yash1photos', href: '/yash1photos' },
+    // { name: 'Software', href: '/#software' },
+    // { name: 'Skills', href: '/#skills' },
     { name: 'Contact', href: '/#contact' },
     { name: 'Blog', href: '/blog' },
   ];
@@ -31,8 +32,12 @@ const Navigation = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <a href="/" className="font-mono text-xl font-bold">
-          <span className="bg-black text-white px-2 py-1 rounded-md">Yash Thapliyal</span>
+        <a 
+          href="/" 
+          className="font-mono text-xl font-bold"
+          onClick={() => analytics.trackNavigation('home')}
+        >
+          <span className="bg-black text-white px-2 py-1 rounded-md">yash1hi</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -42,7 +47,8 @@ const Navigation = () => {
               <li key={item.name}>
                 <a 
                   href={item.href}
-                  className="font-mono text-sm uppercase tracking-wider hover:text-gray-600 transition-colors"
+                  className="font-mono text-sm hover:text-gray-600 transition-colors"
+                  onClick={() => analytics.trackNavigation(item.name)}
                 >
                   {item.name}
                 </a>
@@ -68,8 +74,11 @@ const Navigation = () => {
               <li key={item.name} className="py-2 border-b border-gray-200 last:border-b-0">
                 <a 
                   href={item.href}
-                  className="font-mono text-sm uppercase tracking-wider block transition-colors hover:text-gray-600"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-mono text-sm block transition-colors hover:text-gray-600"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    analytics.trackNavigation(item.name);
+                  }}
                 >
                   {item.name}
                 </a>

@@ -9,32 +9,6 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   // Sample data for portfolio sections
-  const photographyProjects = [
-    {
-      id: 1,
-      title: "Wedding Photography",
-      description: "Wedding done at Sunrise Amphithear, Boulder.",
-      tags: [],
-      imageUrl: "/Wedding-Photo.jpg",
-      link: "https://www.instagram.com/p/C9T_1u4PQZg/?img_index=1",
-    },
-    {
-      id: 2,
-      title: "Graduation Photography",
-      description: "Graduation photography at the University of Colorado, Boulder.",
-      tags: [],
-      imageUrl: "/Grad-Photo.jpg",
-      link: "https://www.instagram.com/p/C62bwQ6L6vh/?img_index=1",
-    },
-    {
-      id: 3,
-      title: "Fashion/Creative Photography",
-      description: "Fashion photography as treasurer of ROAM Boulder; general creative photography.",
-      tags: [],
-      imageUrl: "/Ruthless-Photo.jpg",
-      link: "https://www.instagram.com/p/C4ca2w1OCYQ/?img_index=1",
-    }
-  ];
 
   const softwareProjects = [
     {
@@ -130,11 +104,7 @@ const Index = () => {
           />
         </div>
         
-        <PortfolioSection 
-          title="Photography" 
-          id="photography" 
-          items={photographyProjects} 
-        />
+
 
         {/* <PortfolioSection 
           title="Writing" 
