@@ -48,43 +48,58 @@ const Photography = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <Navigation />
       
       {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-32 pb-16">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h1 className="font-mono text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-black text-white px-3 py-2 rounded-md">Photography</span>
+      <div className="container mx-auto px-6 pt-32 pb-20">
+        <div className="text-center max-w-5xl mx-auto mb-20">
+          <h1 className="font-mono text-5xl md:text-7xl font-black mb-8 tracking-tight">
+            <span className="bg-gradient-to-r from-black to-gray-800 text-white px-6 py-4 rounded-2xl shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
+              Photography
+            </span>
           </h1>
-          <p className="font-mono text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            A collection of moments captured through my lens — from portraits and events 
-            to candid street photography and creative compositions.
+          <p className="font-mono text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Fashion, Weddings, Graduation, Creative, and more. 
+            <br />
+            <a 
+              href="https://instagram.com/yash1photos" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-black hover:text-gray-700 transition-colors font-semibold"
+            >
+              @yash1photos
+            </a>
           </p>
         </div>
 
         {/* Masonry Photo Grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
           {photos.map((photo) => (
             <div 
               key={photo.id} 
-              className="break-inside-avoid mb-4 group cursor-pointer"
+              className="break-inside-avoid mb-6 group cursor-pointer"
               onClick={() => openModal(photo)}
             >
-              <div className="relative overflow-hidden rounded-lg bg-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 {!loadedImages.has(photo.id) && (
-                  <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse rounded-2xl" />
                 )}
                 <img
                   src={photo.imageUrl}
                   alt={`Photography by Yash Thapliyal - ${photo.filename}`}
-                  className={`w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 ${
+                  className={`w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700 ease-out ${
                     loadedImages.has(photo.id) ? 'opacity-100' : 'opacity-0'
                   }`}
                   onLoad={() => handleImageLoad(photo.id)}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-xl font-mono text-sm font-medium">
+                    {photo.filename.replace(/[-_]/g, ' ')}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -94,24 +109,24 @@ const Photography = () => {
       {/* Modal */}
       {selectedPhoto && (
         <div 
-          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-6"
           onClick={closeModal}
         >
           <div className="relative max-w-7xl max-h-full">
             <button
               onClick={closeModal}
-              className="absolute -top-12 right-0 font-mono text-white hover:text-gray-300 text-lg font-bold z-10"
+              className="absolute -top-16 right-0 font-mono text-white hover:text-gray-300 text-xl font-bold z-10 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-xl transition-colors duration-300"
             >
               CLOSE ×
             </button>
             <img
               src={selectedPhoto.imageUrl}
               alt={`Photography by Yash Thapliyal - ${selectedPhoto.filename}`}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
-            <div className="absolute bottom-4 left-4 font-mono text-white text-sm bg-black bg-opacity-50 px-3 py-1 rounded">
-              {selectedPhoto.filename}
+            <div className="absolute bottom-6 left-6 font-mono text-white text-lg bg-black/70 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold">
+              {selectedPhoto.filename.replace(/[-_]/g, ' ')}
             </div>
           </div>
         </div>
