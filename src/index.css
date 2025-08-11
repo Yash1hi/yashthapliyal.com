@@ -84,6 +84,20 @@
   .grid-item {
     @apply border border-gray-300 rounded-md;
   }
+
+  .prose a {
+    font-weight: 700 !important;
+    color: #1f2937 !important; /* gray-800 */
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 2px !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .prose a:hover {
+    color: #000000 !important; /* black */
+    text-decoration-color: #9ca3af !important; /* gray-400 */
+  }
 }
 
 .fade-in-section {
