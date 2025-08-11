@@ -6,7 +6,8 @@ const blogPosts = {
   // 'getting-started-with-react': () => import('@/content/blog/getting-started-with-react.md?raw'),
   'how-to-graduate-at-19-with-a-BS-in-CS': () => import('@/content/blog/how-to-graduate-at-19-with-a-BS-in-CS.md?raw'),
   'every-CU-CS-class-rated': () => import('@/content/blog/every-CU-CS-class-rated.md?raw'),
-  'coffee-tracker-day-project': () => import('@/content/blog/coffee-tracker-day-project.md?raw')
+  'coffee-tracker-day-project': () => import('@/content/blog/coffee-tracker-day-project.md?raw'),
+  'def-con-33-top-talk-names': () => import('@/content/blog/def-con-33-top-talk-names.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
