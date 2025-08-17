@@ -55,6 +55,7 @@ src/
 - **Component Library**: Uses shadcn/ui components built on Radix UI
 - **Responsive Design**: Tailwind CSS with custom animations and themes
 - **Analytics System**: Comprehensive Google Analytics 4 tracking with custom events
+- **Music Integration**: Hero page displays current top songs with navigation
 - **Coffee Tracker**: Custom page for tracking coffee consumption
 - **P5 Sketch**: Interactive sketch page (MrSqueebleEXE route)
 - **Photo Compression**: Automated WebP conversion with Sharp
@@ -100,6 +101,22 @@ Blog post links use a dual approach for styling due to Tailwind's prose class sp
 
 The prose class from `@tailwindcss/typography` has strong specificity, so both approaches ensure reliable styling overrides.
 
+## Music Integration System
+
+Hero page includes an integrated music display showing current top songs:
+
+- **Data source**: JSON files in `public/data/` directory
+- **Current display**: Shows one song at a time with navigation arrows
+- **Navigation**: Up/down arrows to cycle through songs
+- **External links**: Direct links to Spotify and YouTube
+- **Analytics**: All music interactions tracked via GA4
+- **Versioning**: Previous weeks archived in `songs-history/` folder
+
+### Updating Songs
+1. Edit `public/data/current-top-songs.json`
+2. Update songs array and `weekOf` date
+3. Component automatically refreshes
+
 ## Analytics System
 
 Comprehensive Google Analytics 4 implementation with custom event tracking:
@@ -107,7 +124,7 @@ Comprehensive Google Analytics 4 implementation with custom event tracking:
 - **Page tracking**: Automatic page view tracking for all routes
 - **User interactions**: Navigation, form interactions, photo views, external links
 - **Content engagement**: Blog post views, scroll depth tracking, social shares
-- **Feature tracking**: Coffee tracker usage, P5 sketch interactions
+- **Feature tracking**: Coffee tracker usage, P5 sketch interactions, music widget
 - **Error tracking**: JavaScript errors and performance metrics
 - **Setup**: Requires `VITE_GA_TRACKING_ID` environment variable
 

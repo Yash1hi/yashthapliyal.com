@@ -1,0 +1,38 @@
+{
+  "weekOf": "2025-08-10",
+  "songs": [
+    {
+      "id": "1",
+      "title": "Anti-Hero",
+      "artist": "Taylor Swift",
+      "album": "Midnights",
+      "artwork_url": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
+      "spotify_url": "https://open.spotify.com/track/0V3wPSX9ygBnCm8psDIegu",
+      "youtube_url": "https://www.youtube.com/watch?v=b1kbLWvqugk",
+      "preview_url": null,
+      "date_added": "2025-08-10"
+    },
+    {
+      "id": "2",
+      "title": "As It Was",
+      "artist": "Harry Styles", 
+      "album": "Harry's House",
+      "artwork_url": "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0",
+      "spotify_url": "https://open.spotify.com/track/4Dvkj6JhhA12EX05fT7y2e",
+      "youtube_url": "https://www.youtube.com/watch?v=H5v3kku4y6Q",
+      "preview_url": null,
+      "date_added": "2025-08-10"
+    },
+    {
+      "id": "3", 
+      "title": "About Damn Time",
+      "artist": "Lizzo",
+      "album": "Special",
+      "artwork_url": "https://i.scdn.co/image/ab67616d0000b273be82673b5f79d9658ec0a9fd",
+      "spotify_url": "https://open.spotify.com/track/1PckUlxKqWQs3RlWXVBLw4",
+      "youtube_url": "https://www.youtube.com/watch?v=nQJACVmankY",
+      "preview_url": null,
+      "date_added": "2025-08-10"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import HeroMusicDisplay from '@/components/HeroMusicDisplay';
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -38,11 +39,18 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className={`flex justify-center transition-all duration-700 delay-500 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-300 bg-gray-100 flex items-center justify-center">
-              {/* <div className="text-gray-400 font-mono">Your Photo</div>
-              <div className="absolute inset-0 bg-gray-200 opacity-20"></div> */}
-              <img src="/headshot.jpeg" alt="Profile" className="w-full h-full object-cover" />
+          <div className={`transition-all duration-700 delay-500 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
+            <div className="flex justify-center mb-6">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-300 bg-gray-100 flex items-center justify-center">
+                {/* <div className="text-gray-400 font-mono">Your Photo</div>
+                <div className="absolute inset-0 bg-gray-200 opacity-20"></div> */}
+                <img src="/headshot.jpeg" alt="Profile" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            
+            {/* Music Display */}
+            <div className="max-w-md mx-auto">
+              <HeroMusicDisplay />
             </div>
           </div>
         </div>
