@@ -17,14 +17,13 @@ interface Song {
   date_added: string;
 }
 
-interface TopSongsData {
-  weekOf: string;
+interface AllSongsData {
   songs: Song[];
 }
 
 const HeroMusicDisplay = () => {
   const [songs, setSongs] = useState<Song[]>([]);
-  const [weekOf, setWeekOf] = useState<string>('');
+  const [currentDate, setCurrentDate] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -68,16 +67,18 @@ const HeroMusicDisplay = () => {
   const fetchCurrentSongs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/data/current-top-songs.json');
+      const response = await fetch('/data/all-songs.json');
       if (!response.ok) {
         throw new Error('Failed to fetch songs');
       }
-      const data: TopSongsData = await response.json();
-      setSongs(data.songs);
-      setWeekOf(data.weekOf);
+      const data: AllSongsData = await response.json();
+      // Take only the first 5 songs (most recent)
+      const recentSongs = data.songs.slice(0, 5);
+      setSongs(recentSongs);
+      setCurrentDate(new Date().toISOString().split('T')[0]);
       setError(null);
       
-      analytics.trackTopSongsWidgetLoaded(data.weekOf, data.songs.length);
+      analytics.trackTopSongsWidgetLoaded(new Date().toISOString().split('T')[0], recentSongs.length);
     } catch (err) {
       setError('Failed to load songs');
       console.error('Error fetching songs:', err);
@@ -228,7 +229,7 @@ const HeroMusicDisplay = () => {
       <audio ref={audioRef} />
       
       <p className="text-xs text-gray-600 font-mono mb-2">
-        Top Songs of the Week - {weekOf && formatDate(weekOf)}
+        Recent Top Songs - {currentDate && formatDate(currentDate)}
       </p>
 
       <Card className="p-3 bg-white/90 backdrop-blur-sm border border-gray-200">

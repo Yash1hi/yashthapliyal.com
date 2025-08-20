@@ -120,7 +120,7 @@ async function downloadAppleMusicPreviews() {
     console.log('🔍 Using iTunes Search API (no key required)');
 
     // Read current songs
-    const songsPath = path.join(__dirname, '../public/data/current-top-songs.json');
+    const songsPath = path.join(__dirname, '../public/data/all-songs.json');
     
     if (!fs.existsSync(songsPath)) {
       throw new Error(`Songs file not found: ${songsPath}`);
