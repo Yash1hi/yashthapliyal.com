@@ -1,6 +1,26 @@
 {
   "songs": [
     {
+      "id": "10",
+      "title": "broken heart bossa",
+      "artist": "kieramari",
+      "album": "TBD",
+      "date_added": "2025-08-22",
+      "preview_url": "/audio/kieramari---broken-heart-bossa.m4a",
+      "apple_url": "https://music.apple.com/us/album/broken-heart-bossa/1809669597?i=1809669598&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/18/1d/62/181d62ab-e495-2329-6ea3-2f2574193e8c/artwork.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "9",
+      "title": "options",
+      "artist": "jmwr",
+      "album": "TBD",
+      "date_added": "2025-08-22",
+      "preview_url": "/audio/jmwr---options.m4a",
+      "apple_url": "https://music.apple.com/us/album/options/1817363911?i=1817364124&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5d/97/185d9728-7d97-5744-eaf0-70d3682e6c4e/artwork.jpg/300x300bb.jpg"
+    },
+    {
       "id": "8",
       "title": "Popular",
       "artist": "The Weeknd & Madonna",
@@ -79,39 +99,6 @@
       "date_added": "2025-08-17",
       "preview_url": "/audio/clairo---juna.m4a",
       "apple_url": "https://music.apple.com/us/album/juna/1742301413?i=1742301428&uo=4"
-    },
-    {
-      "id": "previous-1",
-      "title": "Anti-Hero",
-      "artist": "Taylor Swift",
-      "album": "Midnights",
-      "artwork_url": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
-      "spotify_url": "https://open.spotify.com/track/0V3wPSX9ygBnCm8psDIegu",
-      "youtube_url": "https://www.youtube.com/watch?v=b1kbLWvqugk",
-      "preview_url": null,
-      "date_added": "2025-08-10"
-    },
-    {
-      "id": "previous-2",
-      "title": "As It Was",
-      "artist": "Harry Styles", 
-      "album": "Harry's House",
-      "artwork_url": "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0",
-      "spotify_url": "https://open.spotify.com/track/4Dvkj6JhhA12EX05fT7y2e",
-      "youtube_url": "https://www.youtube.com/watch?v=H5v3kku4y6Q",
-      "preview_url": null,
-      "date_added": "2025-08-10"
-    },
-    {
-      "id": "previous-3", 
-      "title": "About Damn Time",
-      "artist": "Lizzo",
-      "album": "Special",
-      "artwork_url": "https://i.scdn.co/image/ab67616d0000b273be82673b5f79d9658ec0a9fd",
-      "spotify_url": "https://open.spotify.com/track/1PckUlxKqWQs3RlWXVBLw4",
-      "youtube_url": "https://www.youtube.com/watch?v=nQJACVmankY",
-      "preview_url": null,
-      "date_added": "2025-08-10"
     }
   ]
 }
