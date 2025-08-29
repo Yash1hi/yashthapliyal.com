@@ -1,6 +1,16 @@
 {
   "songs": [
     {
+      "id": "11",
+      "title": "Lover Girl",
+      "artist": "Laufey",
+      "album": "TBD",
+      "date_added": "2025-08-28",
+      "preview_url": "/audio/laufey---lover-girl.m4a",
+      "apple_url": "https://music.apple.com/us/album/lover-girl/1834263082?i=1834263089&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/23/b8/0c23b8dd-e78c-1293-4875-2dc1840b9132/199538403633.jpg/300x300bb.jpg"
+    },
+    {
       "id": "10",
       "title": "broken heart bossa",
       "artist": "kieramari",
