@@ -1,14 +1,24 @@
 {
   "songs": [
     {
+      "id": "12",
+      "title": "Loretta",
+      "artist": "Ginger Root",
+      "album": "TBD",
+      "date_added": "2025-09-04",
+      "preview_url": "/audio/ginger-root---loretta.m4a",
+      "apple_url": "https://music.apple.com/us/album/loretta/1564305258?i=1564305273&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/db/16/01/db1601fc-4868-82d7-939b-43cdb06fde0e/3663729156433_cover.jpg/300x300bb.jpg"
+    },
+    {
       "id": "11",
       "title": "Lover Girl",
       "artist": "Laufey",
       "album": "TBD",
       "date_added": "2025-08-28",
       "preview_url": "/audio/laufey---lover-girl.m4a",
-      "apple_url": "https://music.apple.com/us/album/lover-girl/1834263082?i=1834263089&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/23/b8/0c23b8dd-e78c-1293-4875-2dc1840b9132/199538403633.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/lover-girl/1812589421?i=1812589428&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/de/5b/8e/de5b8ece-134b-1dcb-e785-52005810f134/199350548420.jpg/300x300bb.jpg"
     },
     {
       "id": "10",
