@@ -8,7 +8,8 @@ const blogPosts = {
   'every-CU-CS-class-rated': () => import('@/content/blog/every-CU-CS-class-rated.md?raw'),
   'coffee-tracker-day-project': () => import('@/content/blog/coffee-tracker-day-project.md?raw'),
   'def-con-33-top-talk-names': () => import('@/content/blog/def-con-33-top-talk-names.md?raw'),
-  'nxsweep': () => import('@/content/blog/nxsweep.md?raw')
+  'nxsweep': () => import('@/content/blog/nxsweep.md?raw'),
+  'raspberry-pi-web-dev-server': () => import('@/content/blog/raspberry-pi-web-dev-server.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
