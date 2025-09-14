@@ -1,6 +1,26 @@
 {
   "songs": [
     {
+      "id": "14",
+      "title": "Juban District",
+      "artist": "Ginger Root",
+      "album": "TBD",
+      "date_added": "2025-09-09",
+      "preview_url": "/audio/ginger-root---juban-district.m4a",
+      "apple_url": "https://music.apple.com/us/album/juban-district/1564305258?i=1564305610&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/db/16/01/db1601fc-4868-82d7-939b-43cdb06fde0e/3663729156433_cover.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "13",
+      "title": "Story of My Life x Clarity (Kronus Mashup)",
+      "artist": "Kronus",
+      "album": "TBD",
+      "date_added": "2025-09-09",
+      "preview_url": "/audio/kronus---story-of-my-life-x-clarity.m4a",
+      "apple_url": "https://soundcloud.com/krxnus/story-of-my-life-x-clarity-kronus-mashup?p=i&c=1",
+      "artwork_url": "https://i1.sndcdn.com/artworks-PhF3fROlLnX65Bv8-pvLnQw-t1080x1080.png"
+    },
+    {
       "id": "12",
       "title": "Loretta",
       "artist": "Ginger Root",
