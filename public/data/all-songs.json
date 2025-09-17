@@ -1,6 +1,36 @@
 {
   "songs": [
     {
+      "id": "17",
+      "title": "STOPLIGHT",
+      "artist": "SUMIN & slom",
+      "album": "TBD",
+      "date_added": "2025-09-17",
+      "preview_url": "/audio/sumin-slom---stoplight.m4a",
+      "apple_url": "https://music.apple.com/us/album/stoplight/1757545844?i=1757546243&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f3/4d/82/f34d8203-668c-575c-ed52-2be841008663/191953377520.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "16",
+      "title": "Drowning Love - Chasing Kou",
+      "artist": "Penguin Piano",
+      "album": "TBD",
+      "date_added": "2025-09-17",
+      "preview_url": "/audio/penguin-piano---drowning-love---chasing-kou.m4a",
+      "apple_url": "https://music.apple.com/us/album/drowning-love-chasing-kou-soft-piano/1733760635?i=1733760638&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/8a/35/e5/8a35e50e-b29f-950a-9e59-d9c5b4e73164/2565.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "15",
+      "title": "Somoku",
+      "artist": "Hakushi Hasegawa",
+      "album": "TBD",
+      "date_added": "2025-09-17",
+      "preview_url": "/audio/hakushi-hasegawa---somoku.m4a",
+      "apple_url": "https://music.apple.com/us/album/somoku/1717452892?i=1717452894&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/13/74/08/13740847-9c95-bbcf-80ef-ef81595abc1a/5054429177107.png/300x300bb.jpg"
+    },
+    {
       "id": "14",
       "title": "Juban District",
       "artist": "Ginger Root",
