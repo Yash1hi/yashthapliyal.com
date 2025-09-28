@@ -21,6 +21,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - Input: `public/Uncompressed-Photos/`
   - Output: `public/Portfolio-Photos-WebP/`
   - Settings: 80% quality, lossy WebP compression
+- `npm run generate-thumbnails` - Generate compressed thumbnails for fast loading
+  - Input: `public/Portfolio-Photos-WebP/`
+  - Output: `public/Portfolio-Photos-Thumbnails/`
+  - Settings: 400x600px max size, 60% quality, WebP format
+  - Naming: `[original-name]-thumb.webp`
 
 ## Architecture Overview
 

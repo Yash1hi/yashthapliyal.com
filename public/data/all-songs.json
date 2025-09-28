@@ -1,6 +1,16 @@
 {
   "songs": [
     {
+      "id": "19",
+      "title": "He Dont Deserve You",
+      "artist": "AmiiFy",
+      "album": "TBD",
+      "date_added": "2025-09-22",
+      "preview_url": "/audio/amiify---he-dont-deserve-you.m4a",
+      "apple_url": "https://music.apple.com/us/album/he-dont-deserve-you/1827069855?i=1827069856&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/a6/c8/a4a6c8a5-e033-1e19-63d3-abf3339f8f65/764656426460_cover.jpg/300x300bb.jpg"
+    },
+    {
       "id": "18",
       "title": "Bounce",
       "artist": "Mj Flo",
@@ -77,8 +87,8 @@
       "album": "TBD",
       "date_added": "2025-08-28",
       "preview_url": "/audio/laufey---lover-girl.m4a",
-      "apple_url": "https://music.apple.com/us/album/lover-girl/1812589421?i=1812589428&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/de/5b/8e/de5b8ece-134b-1dcb-e785-52005810f134/199350548420.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/lover-girl-instrumental/1840522777?i=1840522779&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/34/b1/fe34b1e5-2c7f-5eac-222f-07a14cb64326/199538854428.jpg/300x300bb.jpg"
     },
     {
       "id": "10",

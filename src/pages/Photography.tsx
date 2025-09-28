@@ -5,8 +5,10 @@ import { analytics } from '@/lib/analytics';
 interface Photo {
   id: number;
   imageUrl: string;
+  thumbnailUrl: string;
   filename: string;
   loaded: boolean;
+  thumbnailLoaded: boolean;
   inView: boolean;
   aspectRatio?: number;
   blurDataUrl?: string;
@@ -16,31 +18,32 @@ const Photography = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [imageCache, setImageCache] = useState<Map<string, HTMLImageElement>>(new Map());
+  const [thumbnailCache, setThumbnailCache] = useState<Map<string, HTMLImageElement>>(new Map());
 
   const imageObserver = useCallback((node: HTMLDivElement, photoId: number) => {
     if (!node) return;
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const photo = photos.find(p => p.id === photoId);
-          if (photo && !photo.loaded) {
-            setPhotos(prev => prev.map(p => 
+          if (photo && !photo.thumbnailLoaded) {
+            setPhotos(prev => prev.map(p =>
               p.id === photoId ? { ...p, inView: true } : p
             ));
-            
-            // Load this image and next 2
+
+            // Load this thumbnail and next 2
             const currentIndex = photos.findIndex(p => p.id === photoId);
             const nextPhotos = photos.slice(currentIndex, currentIndex + 3);
-            
+
             nextPhotos.forEach(photo => {
-              if (!photo.loaded) {
+              if (!photo.thumbnailLoaded) {
                 const img = new Image();
-                img.src = photo.imageUrl;
+                img.src = photo.thumbnailUrl;
                 img.onload = () => {
-                  setImageCache(prev => new Map(prev.set(photo.imageUrl, img)));
-                  setPhotos(prev => prev.map(p => 
-                    p.id === photo.id ? { ...p, loaded: true } : p
+                  setThumbnailCache(prev => new Map(prev.set(photo.thumbnailUrl, img)));
+                  setPhotos(prev => prev.map(p =>
+                    p.id === photo.id ? { ...p, thumbnailLoaded: true } : p
                   ));
                 };
               }
@@ -66,27 +69,40 @@ const Photography = () => {
       as: 'url'
     });
 
+    // Get thumbnail paths
+    const thumbnailModules = import.meta.glob('/public/Portfolio-Photos-Thumbnails/*.webp', {
+      eager: true,
+      as: 'url'
+    });
+
     const photoList: Photo[] = Object.entries(photoModules).map(([path, url], index) => {
       const filename = path.split('/').pop()?.split('.')[0] || '';
+      const thumbnailKey = Object.keys(thumbnailModules).find(thumbPath =>
+        thumbPath.includes(`${filename}-thumb.webp`)
+      );
+      const thumbnailUrl = thumbnailKey ? thumbnailModules[thumbnailKey] as string : url as string;
+
       return {
         id: index + 1,
         imageUrl: url as string,
+        thumbnailUrl,
         filename,
         loaded: false,
+        thumbnailLoaded: false,
         inView: false
       };
     });
 
     setPhotos(photoList);
 
-    // Preload first 3 images
+    // Preload first 3 thumbnails
     photoList.slice(0, 3).forEach(photo => {
       const img = new Image();
-      img.src = photo.imageUrl;
+      img.src = photo.thumbnailUrl;
       img.onload = () => {
-        setImageCache(prev => new Map(prev.set(photo.imageUrl, img)));
-        setPhotos(prev => prev.map(p => 
-          p.id === photo.id ? { ...p, loaded: true } : p
+        setThumbnailCache(prev => new Map(prev.set(photo.thumbnailUrl, img)));
+        setPhotos(prev => prev.map(p =>
+          p.id === photo.id ? { ...p, thumbnailLoaded: true } : p
         ));
       };
     });
@@ -104,6 +120,18 @@ const Photography = () => {
     setSelectedPhoto(photo);
     document.body.style.overflow = 'hidden';
     analytics.trackPhotoModalOpen(photo.filename);
+
+    // Preload full-size image if not already cached
+    if (!imageCache.has(photo.imageUrl)) {
+      const img = new Image();
+      img.src = photo.imageUrl;
+      img.onload = () => {
+        setImageCache(prev => new Map(prev.set(photo.imageUrl, img)));
+        setPhotos(prev => prev.map(p =>
+          p.id === photo.id ? { ...p, loaded: true } : p
+        ));
+      };
+    }
   };
 
   const closeModal = () => {
@@ -153,7 +181,7 @@ const Photography = () => {
             >
               <div className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 {/* Enhanced skeleton with shimmer effect */}
-                {!photo.loaded && (
+                {!photo.thumbnailLoaded && (
                   <div className="relative overflow-hidden">
                     <div className="bg-gradient-to-br from-gray-200 to-gray-300 h-64 md:h-80 lg:h-96 rounded-2xl" />
                     <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-2xl" />
@@ -162,8 +190,8 @@ const Photography = () => {
                     </div>
                   </div>
                 )}
-                
-                {photo.loaded && (
+
+                {photo.thumbnailLoaded && (
                   <div className="relative">
                     {/* Blur placeholder */}
                     {photo.blurDataUrl && (
@@ -171,12 +199,12 @@ const Photography = () => {
                         src={photo.blurDataUrl}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover filter blur-sm scale-105 transition-opacity duration-300"
-                        style={{ opacity: photo.loaded ? 0 : 1 }}
+                        style={{ opacity: photo.thumbnailLoaded ? 0 : 1 }}
                       />
                     )}
-                    
+
                     <img
-                      src={photo.imageUrl}
+                      src={photo.thumbnailUrl}
                       alt={`Photography by Yash Thapliyal - ${photo.filename}`}
                       className="w-full h-auto object-cover group-hover:scale-110 transition-all duration-700 ease-out opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.2s_forwards]"
                       onLoad={() => handleImageLoad(photo.id)}

@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "compress-photos": "node scripts/fileCompression.js",
+    "generate-thumbnails": "node scripts/generateThumbnails.js",
     "download-apple-music-previews": "node scripts/downloadAppleMusicPreviews.js"
   },
   "dependencies": {
