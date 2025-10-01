@@ -1,6 +1,36 @@
 {
   "songs": [
     {
+      "id": "22",
+      "title": "Over The Moon",
+      "artist": "The Marías",
+      "album": "TBD",
+      "date_added": "2025-10-1",
+      "preview_url": "/audio/the-maras---over-the-moon.m4a",
+      "apple_url": "https://music.apple.com/us/album/over-the-moon/1436703562?i=1436703572&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/71/5f/fc/715ffc50-c006-500b-ad3e-830a6a6bbc70/artwork.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "21",
+      "title": "Still Got The Blues",
+      "artist": "Gary Moore",
+      "album": "TBD",
+      "date_added": "2025-10-1",
+      "preview_url": "/audio/gary-moore---still-got-the-blues.m4a",
+      "apple_url": "https://music.apple.com/us/album/still-got-the-blues/723401781?i=723403307&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a2/ab/06/a2ab060c-86aa-3fe9-319f-d03dbf66095d/00077778616757.rgb.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "20",
+      "title": "NIGHTLIFE",
+      "artist": "ilyaugust",
+      "album": "TBD",
+      "date_added": "2025-10-1",
+      "preview_url": "/audio/ilyaugust---nightlife.m4a",
+      "apple_url": "https://music.apple.com/us/album/nightlife/1838586869?i=1838586870&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/f4/4d/4df44d95-51ea-0cfd-509b-17d7bf9d8f6a/663918508114.jpg/300x300bb.jpg"
+    },
+    {
       "id": "19",
       "title": "He Dont Deserve You",
       "artist": "AmiiFy",
@@ -37,7 +67,7 @@
       "album": "TBD",
       "date_added": "2025-09-17",
       "preview_url": "/audio/penguin-piano---drowning-love---chasing-kou.m4a",
-      "apple_url": "https://music.apple.com/us/album/drowning-love-chasing-kou-soft-piano/1733760635?i=1733760638&uo=4",
+      "apple_url": "https://music.apple.com/us/album/drowning-love-chasing-kou-old-piano/1733760635?i=1733760646&uo=4",
       "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/8a/35/e5/8a35e50e-b29f-950a-9e59-d9c5b4e73164/2565.jpg/300x300bb.jpg"
     },
     {
@@ -87,8 +117,8 @@
       "album": "TBD",
       "date_added": "2025-08-28",
       "preview_url": "/audio/laufey---lover-girl.m4a",
-      "apple_url": "https://music.apple.com/us/album/lover-girl-instrumental/1840522777?i=1840522779&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/34/b1/fe34b1e5-2c7f-5eac-222f-07a14cb64326/199538854428.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/lover-girl/1810514672?i=1810514686&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/84/cb/c7/84cbc7b4-0b88-038a-87c8-3fa6f5df09cd/199350437694.jpg/300x300bb.jpg"
     },
     {
       "id": "10",
@@ -115,40 +145,40 @@
       "title": "Popular",
       "artist": "The Weeknd & Madonna",
       "album": "TBD",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f9/40/ce/f940ce64-ef5e-9ed0-5171-45d790b8b999/23UMGIM66787.rgb.jpg/300x300bb.jpg",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b8/5f/1a/b85f1add-8ef0-9d13-42f4-3303710fa238/23UMGIM66788.rgb.jpg/300x300bb.jpg",
       "date_added": "2025-08-20",
       "preview_url": "/audio/the-weeknd-madonna---popular.m4a",
-      "apple_url": "https://music.apple.com/us/album/popular-feat-playboi-carti-music-from-the-hbo/1691920669?i=1691920672&uo=4"
+      "apple_url": "https://music.apple.com/us/album/popular-feat-playboi-carti-music-from-the-hbo/1691921192?i=1691921506&uo=4"
     },
     {
       "id": "7",
       "title": "Best Time",
       "artist": "Brent Faiyaz",
       "album": "TBD",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/94/e6/48/94e648c3-7bc0-5795-97e2-63e9b7cd7cd5/jnbR6NBAORVwD-larger-than-life-original.png/300x300bb.jpg",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2c/47/16/2c471626-530c-d4b4-183b-a325bcc08413/XBNadobyvRwqx-larger-than-life-original.png/300x300bb.jpg",
       "date_added": "2025-08-20",
       "preview_url": "/audio/brent-faiyaz---best-time.m4a",
-      "apple_url": "https://music.apple.com/us/album/best-time/1710673514?i=1710673740&uo=4"
+      "apple_url": "https://music.apple.com/us/album/best-time/1710673352?i=1710673361&uo=4"
     },
     {
       "id": "6",
       "title": "fool around",
       "artist": "strongboi",
       "album": "TBD",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c1/33/97/c133976b-d4c6-8eff-695a-635f1d016d9f/5059449108285.png/300x300bb.jpg",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/de/27/42/de27426c-6b9c-09a3-bd1a-72907cf27a0c/5059449065564.png/300x300bb.jpg",
       "date_added": "2025-08-17",
       "preview_url": "/audio/strongboi---fool-around.m4a",
-      "apple_url": "https://music.apple.com/us/album/fool-around/1666873378?i=1666873379&uo=4"
+      "apple_url": "https://music.apple.com/us/album/fool-around/1610847735?i=1610847737&uo=4"
     },
     {
       "id": "5",
       "title": "big ballin",
       "artist": "lil hero",
       "album": "TBD",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/63/e7/5c/63e75c7e-dd90-dbe6-494d-85250c4edc73/196922573255_Cover.jpg/300x300bb.jpg",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/23/0e/40/230e40ed-03f8-f8f8-0f6d-8c410c0693a9/196815798369_Cover.jpg/300x300bb.jpg",
       "date_added": "2025-08-17",
       "preview_url": "/audio/lil-hero---big-ballin.m4a",
-      "apple_url": "https://music.apple.com/us/album/big-ballin/1700325763?i=1700326126&uo=4"
+      "apple_url": "https://music.apple.com/us/album/big-ballin/1659665360?i=1659665371&uo=4"
     },
     {
       "id": "4",
