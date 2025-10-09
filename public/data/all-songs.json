@@ -1,6 +1,16 @@
 {
   "songs": [
     {
+      "id": "23",
+      "title": "Chammak Challo",
+      "artist": "Akon",
+      "album": "TBD",
+      "date_added": "2025-10-8",
+      "preview_url": "/audio/akon---chammak-challo.m4a",
+      "apple_url": "https://music.apple.com/us/album/chammak-challo/1123224919?i=1123225125&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/0c/f0/42/0cf042ce-94bf-0e40-1691-2aef999a5dbc/8902894697309_cover.jpg/300x300bb.jpg"
+    },
+    {
       "id": "22",
       "title": "Over The Moon",
       "artist": "The Marías",
@@ -57,8 +67,8 @@
       "album": "TBD",
       "date_added": "2025-09-17",
       "preview_url": "/audio/sumin-slom---stoplight.m4a",
-      "apple_url": "https://music.apple.com/us/album/stoplight/1757545844?i=1757546243&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f3/4d/82/f34d8203-668c-575c-ed52-2be841008663/191953377520.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/stoplight/1750160583?i=1750160584&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b8/b9/ce/b8b9cedb-04ca-2170-ca93-f7a79f75ff93/191953369068.jpg/300x300bb.jpg"
     },
     {
       "id": "16",
@@ -96,9 +106,9 @@
       "artist": "Kronus",
       "album": "TBD",
       "date_added": "2025-09-09",
-      "preview_url": "/audio/kronus---story-of-my-life-x-clarity.m4a",
-      "apple_url": "https://soundcloud.com/krxnus/story-of-my-life-x-clarity-kronus-mashup?p=i&c=1",
-      "artwork_url": "https://i1.sndcdn.com/artworks-PhF3fROlLnX65Bv8-pvLnQw-t1080x1080.png"
+      "preview_url": "/audio/kronus---story-of-my-life-x-clarity-kronus-mashup.m4a",
+      "apple_url": "https://music.apple.com/us/album/story-of-my-life-x-clarity/1841791022?i=1841791026&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5b/d6/94/5bd694c0-7aa6-e078-aa83-cae67a508f48/artwork.jpg/300x300bb.jpg"
     },
     {
       "id": "12",
