@@ -9,7 +9,8 @@ const blogPosts = {
   'coffee-tracker-day-project': () => import('@/content/blog/coffee-tracker-day-project.md?raw'),
   'def-con-33-top-talk-names': () => import('@/content/blog/def-con-33-top-talk-names.md?raw'),
   'nxsweep': () => import('@/content/blog/nxsweep.md?raw'),
-  'web-server-deploy-rpi': () => import('@/content/blog/web-server-deploy-rpi.md?raw')
+  'web-server-deploy-rpi': () => import('@/content/blog/web-server-deploy-rpi.md?raw'),
+  'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {

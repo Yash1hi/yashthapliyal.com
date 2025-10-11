@@ -51,7 +51,87 @@ const BlogPost = () => {
             {new Date(post.date).toLocaleDateString()} • {post.tags.join(', ')}
           </div>
           <div className="prose lg:prose-xl [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-2xl [&>h2]:mt-8 [&>h2]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:mb-4 [&>li]:mb-2 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                img: ({ node, alt, src, title, ...props }) => {
+                  // Size presets
+                  const sizeClasses: Record<string, string> = {
+                    'small': 'max-w-xs',
+                    'medium': 'max-w-md',
+                    'large': 'max-w-2xl',
+                    'full': 'w-full',
+                  };
+
+                  let className = 'mx-auto my-4';
+                  let style: React.CSSProperties = {};
+                  let actualTitle = title;
+                  let sizeSpec: string | undefined;
+                  let isInline = false;
+
+                  // Parse title for size (format: "description|size" or just "size")
+                  if (title?.includes('|')) {
+                    const parts = title.split('|');
+                    const lastPart = parts[parts.length - 1].trim();
+
+                    // Check for inline modifier
+                    if (lastPart.toLowerCase() === 'inline') {
+                      isInline = true;
+                      actualTitle = parts.slice(0, -1).join('|').trim() || undefined;
+                    } else {
+                      // Check if last part is a valid size
+                      const isValidSize =
+                        sizeClasses[lastPart.toLowerCase()] ||
+                        lastPart.match(/^\d+(%|px|rem|em)$/);
+
+                      if (isValidSize) {
+                        sizeSpec = lastPart;
+                        actualTitle = parts.slice(0, -1).join('|').trim() || undefined;
+                      }
+                    }
+                  } else {
+                    // No pipe, check if entire title is a size or inline
+                    if (title?.toLowerCase() === 'inline') {
+                      isInline = true;
+                      actualTitle = undefined;
+                    } else {
+                      const isValidSize =
+                        title && (sizeClasses[title.toLowerCase()] || title.match(/^\d+(%|px|rem|em)$/));
+
+                      if (isValidSize) {
+                        sizeSpec = title;
+                        actualTitle = undefined;
+                      }
+                    }
+                  }
+
+                  // Apply inline styling
+                  if (isInline) {
+                    className = 'inline-block m-2 align-top max-w-[45%]';
+                  } else {
+                    // Apply size
+                    if (sizeSpec) {
+                      if (sizeClasses[sizeSpec.toLowerCase()]) {
+                        className += ` ${sizeClasses[sizeSpec.toLowerCase()]}`;
+                      } else if (sizeSpec.match(/^\d+(%|px|rem|em)$/)) {
+                        style.maxWidth = sizeSpec;
+                      }
+                    }
+                  }
+
+                  return (
+                    <img
+                      src={src}
+                      alt={alt || ''}
+                      title={actualTitle}
+                      className={className}
+                      style={style}
+                      {...props}
+                    />
+                  );
+                }
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </div>

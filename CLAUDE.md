@@ -80,6 +80,30 @@ The blog system is file-based and uses markdown files with frontmatter:
 2. Add frontmatter with required fields
 3. Add import entry to `blogPosts` object in `src/lib/blog.ts`
 
+### Image Sizing in Blog Posts
+
+Control image sizes in markdown using the title attribute with a pipe separator:
+
+**Preset sizes:**
+- `![alt](image.jpg "small")` - Extra small (320px max-width)
+- `![alt](image.jpg "medium")` - Medium (448px max-width)
+- `![alt](image.jpg "large")` - Large (672px max-width)
+- `![alt](image.jpg "full")` - Full width
+
+**Custom sizes:**
+- `![alt](image.jpg "500px")` - Specific pixel width
+- `![alt](image.jpg "80%")` - Percentage width
+- `![alt](image.jpg "20rem")` - Rem units
+
+**Side-by-side images:**
+- `![alt](image1.jpg "inline")` - Display images inline (up to 45% width each)
+- Place multiple images with "inline" on consecutive lines to display them side-by-side
+
+**With title and size:**
+- `![alt](image.jpg "My Image Title|medium")` - Image with title and size
+
+All images are centered by default with vertical spacing (unless using "inline").
+
 ## Styling Guidelines
 
 - Uses Tailwind CSS with custom theme extensions
