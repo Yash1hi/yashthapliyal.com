@@ -5,7 +5,7 @@ description: "A full project writeup for an AI powered Tomagachi room cleaning a
 tags: ["computer science", "write-up", "hackathon"]
 ---
 
-![Sqeeble Front View](/public/Squeeble_Front.png "Sqeeble Front View|medium")
+![Sqeeble Front View](/Squeeble_Front.png "Sqeeble Front View|medium")
 
 
 [Project Link: https://github.com/Yash1hi/Clean-With-Sqeeble](https://github.com/Yash1hi/Clean-With-Sqeeble)
@@ -18,8 +18,8 @@ Yo! Recently had the oppurtunity to participate and win at Hackbubu during SF te
 
 **Clean with Sqeebles** is a gamified room cleaning application that uses AI-powered computer vision to make cleaning more fun (or at least stressful). On load, you get your very own "Sqeeble", whose happiness depends on your cleaning success measured by a live camera feed of your room.
 
-![Sqeeble screenshot 1](/public/Sqeeble_SC.png "inline")
-![Sqeeble screenshot 2](/public/Sqeeble_SC2.png "inline") 
+![Sqeeble screenshot 1](/Sqeeble_SC.png "inline")
+![Sqeeble screenshot 2](/Sqeeble_SC2.png "inline") 
 
 
 ## Core Concept
