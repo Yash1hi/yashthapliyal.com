@@ -82,27 +82,29 @@ The blog system is file-based and uses markdown files with frontmatter:
 
 ### Image Sizing in Blog Posts
 
-Control image sizes in markdown using the title attribute with a pipe separator:
+Control image sizes in markdown using the title attribute with a pipe separator. All images are fully responsive and scale to fit mobile screens.
 
 **Preset sizes:**
-- `![alt](image.jpg "small")` - Extra small (320px max-width)
-- `![alt](image.jpg "medium")` - Medium (448px max-width)
-- `![alt](image.jpg "large")` - Large (672px max-width)
-- `![alt](image.jpg "full")` - Full width
+- `![alt](image.jpg "small")` - Extra small (320px max-width on desktop, full width on mobile)
+- `![alt](image.jpg "medium")` - Medium (448px max-width on desktop, full width on mobile)
+- `![alt](image.jpg "large")` - Large (672px max-width on desktop, full width on mobile)
+- `![alt](image.jpg "full")` - Full width on all devices
 
 **Custom sizes:**
-- `![alt](image.jpg "500px")` - Specific pixel width
-- `![alt](image.jpg "80%")` - Percentage width
-- `![alt](image.jpg "20rem")` - Rem units
+- `![alt](image.jpg "500px")` - Specific pixel width (scales down on mobile)
+- `![alt](image.jpg "80%")` - Percentage width (scales down on mobile)
+- `![alt](image.jpg "20rem")` - Rem units (scales down on mobile)
 
 **Side-by-side images:**
-- `![alt](image1.jpg "inline")` - Display images inline (up to 45% width each)
-- Place multiple images with "inline" on consecutive lines to display them side-by-side
+- `![alt](image1.jpg "inline")` - Display images inline (side-by-side on desktop, stacked on mobile)
+- Place multiple images with "inline" on consecutive lines
+- Desktop: up to 45% width each, side-by-side
+- Mobile: full width, stacked vertically
 
 **With title and size:**
 - `![alt](image.jpg "My Image Title|medium")` - Image with title and size
 
-All images are centered by default with vertical spacing (unless using "inline").
+All images maintain aspect ratio and prevent horizontal overflow on mobile devices.
 
 ## Styling Guidelines
 

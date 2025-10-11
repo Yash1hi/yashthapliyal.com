@@ -44,26 +44,26 @@ const BlogPost = () => {
 
   return (
     <BlogLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <article className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          <div className="text-gray-600 mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 break-words">{post.title}</h1>
+          <div className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-8 break-words">
             {new Date(post.date).toLocaleDateString()} • {post.tags.join(', ')}
           </div>
-          <div className="prose lg:prose-xl [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-2xl [&>h2]:mt-8 [&>h2]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:mb-4 [&>li]:mb-2 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold max-w-none">
+          <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-xl [&>h1]:sm:text-2xl [&>h2]:mt-6 [&>h2]:sm:mt-8 [&>h2]:mb-3 [&>h2]:sm:mb-4 [&>h2]:text-lg [&>h2]:sm:text-xl [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:sm:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-4 [&>ol]:sm:ml-6 [&>ol]:mb-4 [&>li]:mb-2 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold [&>a]:break-words [&>pre]:overflow-x-auto [&>pre]:max-w-full [&>code]:break-words">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
                 img: ({ node, alt, src, title, ...props }) => {
-                  // Size presets
+                  // Size presets (responsive)
                   const sizeClasses: Record<string, string> = {
-                    'small': 'max-w-xs',
-                    'medium': 'max-w-md',
-                    'large': 'max-w-2xl',
+                    'small': 'max-w-full sm:max-w-xs',
+                    'medium': 'max-w-full sm:max-w-md',
+                    'large': 'max-w-full sm:max-w-2xl',
                     'full': 'w-full',
                   };
 
-                  let className = 'mx-auto my-4';
+                  let className = 'mx-auto my-4 max-w-full h-auto';
                   let style: React.CSSProperties = {};
                   let actualTitle = title;
                   let sizeSpec: string | undefined;
@@ -105,9 +105,9 @@ const BlogPost = () => {
                     }
                   }
 
-                  // Apply inline styling
+                  // Apply inline styling (stack on mobile, side-by-side on desktop)
                   if (isInline) {
-                    className = 'inline-block m-2 align-top max-w-[45%]';
+                    className = 'block sm:inline-block mx-auto sm:m-2 my-3 sm:my-0 align-top max-w-full sm:max-w-[45%] h-auto';
                   } else {
                     // Apply size
                     if (sizeSpec) {
@@ -115,6 +115,7 @@ const BlogPost = () => {
                         className += ` ${sizeClasses[sizeSpec.toLowerCase()]}`;
                       } else if (sizeSpec.match(/^\d+(%|px|rem|em)$/)) {
                         style.maxWidth = sizeSpec;
+                        className += ' max-w-full'; // Ensure mobile doesn't overflow
                       }
                     }
                   }

@@ -10,7 +10,7 @@ tags: ["computer science", "write-up", "hackathon"]
 
 [Project Link: https://github.com/Yash1hi/Clean-With-Sqeeble](https://github.com/Yash1hi/Clean-With-Sqeeble)
 
-[Demo Video: https://drive.google.com/file/d/1Wdrad8z62Vg446nY6C1ZNAcxDYPiBc_i/view?usp=sharing](https://drive.google.com/file/d/1Wdrad8z62Vg446nY6C1ZNAcxDYPiBc_i/view?usp=sharing)
+[Demo Video](https://drive.google.com/file/d/1Wdrad8z62Vg446nY6C1ZNAcxDYPiBc_i/view?usp=sharing)
 
 
 Yo! Recently had the oppurtunity to participate and win at Hackbubu during SF tech week 2025, one of the funniest things I have done to date. Incredibly grateful to [Sakshi Deshmukh](https://www.linkedin.com/in/sakshi-d14/) for my partner and lead product designer on this project. During the brainstorming and team finding phase, my new friend [Shania](https://www.linkedin.com/in/shania-chacon/) tossed the idea of a AI powered room cleaning app, but ended up chosing a different path to purse this hackathon. Me and Sakshi picked up the idea, expanding on it to a gamified version, and built our product.
