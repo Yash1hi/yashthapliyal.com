@@ -1,6 +1,26 @@
 {
   "songs": [
     {
+      "id": "25",
+      "title": "VOCOPHORIA",
+      "artist": "Zeñel",
+      "album": "TBD",
+      "date_added": "2025-10-14",
+      "preview_url": "/audio/zeel---vocophoria.m4a",
+      "apple_url": "https://music.apple.com/us/album/vocophoria/1753597157?i=1753597158&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f4/85/53/f48553ed-9072-1125-0d15-2fe044ba5a0a/198595152768.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "24",
+      "title": "Messages from the Stars",
+      "artist": "The RAH Band",
+      "album": "TBD",
+      "date_added": "2025-10-14",
+      "preview_url": "/audio/the-rah-band---messages-from-the-stars.m4a",
+      "apple_url": "https://music.apple.com/us/album/messages-from-the-stars/99304163?i=99303857&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music/e2/cc/12/mzi.czxafjmh.tif/300x300bb.jpg"
+    },
+    {
       "id": "23",
       "title": "Chammak Challo",
       "artist": "Akon",

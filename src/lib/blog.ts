@@ -10,7 +10,8 @@ const blogPosts = {
   'def-con-33-top-talk-names': () => import('@/content/blog/def-con-33-top-talk-names.md?raw'),
   'nxsweep': () => import('@/content/blog/nxsweep.md?raw'),
   'web-server-deploy-rpi': () => import('@/content/blog/web-server-deploy-rpi.md?raw'),
-  'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw')
+  'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw'),
+  // 'how-i-travel-cheap': () => import('@/content/blog/how-i-travel-cheap.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
