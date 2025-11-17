@@ -33,26 +33,53 @@ async function initializeDependencies() {
   }
 }
 
+// Lookup track by Apple Music ID using iTunes Lookup API
+async function lookupAppleMusicTrack(appleMusicId) {
+  const url = `https://itunes.apple.com/lookup?id=${appleMusicId}`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to lookup Apple Music track: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+
+  if (data.results && data.results.length > 0) {
+    const track = data.results[0];
+    return {
+      name: track.trackName,
+      artist: track.artistName,
+      album: track.collectionName,
+      previewUrl: track.previewUrl,
+      artworkUrl: track.artworkUrl100?.replace('100x100', '300x300'), // Get higher res artwork
+      appleUrl: track.trackViewUrl
+    };
+  }
+
+  return null;
+}
+
 // Search for track on Apple Music using iTunes Search API
 async function searchAppleMusicTrack(title, artist) {
   const query = encodeURIComponent(`${artist} ${title}`);
   const url = `https://itunes.apple.com/search?term=${query}&entity=song&limit=5`;
-  
+
   const response = await fetch(url);
-  
+
   if (!response.ok) {
     throw new Error(`Failed to search Apple Music: ${response.statusText}`);
   }
 
   const data = await response.json();
-  
+
   // Find the best match
   for (const track of data.results) {
     const titleMatch = track.trackName.toLowerCase().includes(title.toLowerCase()) ||
                       title.toLowerCase().includes(track.trackName.toLowerCase());
     const artistMatch = track.artistName.toLowerCase().includes(artist.toLowerCase()) ||
                        artist.toLowerCase().includes(track.artistName.toLowerCase());
-    
+
     if (titleMatch && artistMatch && track.previewUrl) {
       return {
         name: track.trackName,
@@ -64,7 +91,7 @@ async function searchAppleMusicTrack(title, artist) {
       };
     }
   }
-  
+
   return null;
 }
 
@@ -140,11 +167,19 @@ async function downloadAppleMusicPreviews() {
       const song = songsData.songs[i];
       
       console.log(`[${i + 1}/${songsData.songs.length}] Processing "${song.title}" by ${song.artist}`);
-      
+
       try {
-        // Search for the track on Apple Music
-        console.log(`   🔍 Searching Apple Music...`);
-        const appleTrack = await searchAppleMusicTrack(song.title, song.artist);
+        let appleTrack = null;
+
+        // If apple_music_id is provided, use lookup API
+        if (song.apple_music_id) {
+          console.log(`   🔍 Looking up Apple Music ID: ${song.apple_music_id}...`);
+          appleTrack = await lookupAppleMusicTrack(song.apple_music_id);
+        } else {
+          // Otherwise, search for the track
+          console.log(`   🔍 Searching Apple Music...`);
+          appleTrack = await searchAppleMusicTrack(song.title, song.artist);
+        }
         
         if (!appleTrack) {
           console.log(`   ⚠️  Not found on Apple Music`);

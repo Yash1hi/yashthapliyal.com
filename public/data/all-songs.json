@@ -1,6 +1,90 @@
 {
   "songs": [
     {
+      "id": "32",
+      "title": "Babydoll",
+      "artist": "Dominic Fike",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "preview_url": "/audio/dominic-fike---babydoll.m4a",
+      "apple_url": "https://music.apple.com/us/album/babydoll/1438243719?i=1438243880&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2d/37/18/2d3718e9-8620-b603-d3cc-f34ce817070d/886447290170.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "31",
+      "title": "LV Sandals",
+      "artist": "EsDeeKid",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "apple_music_id": "1818817443",
+      "preview_url": "/audio/esdeekid---lv-sandals.m4a",
+      "apple_url": "https://music.apple.com/us/album/lv-sandals/1818817424?i=1818817443&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/3f/42/483f423c-56c3-597f-90ab-f1c875af89de/5034644741581.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "30",
+      "title": "The Answer",
+      "artist": "Igwe Aka",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "apple_music_id": "1850531741",
+      "preview_url": "/audio/igwe-aka---the-answer.m4a",
+      "apple_url": "https://music.apple.com/us/album/the-answer/1850531740?i=1850531741&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a8/09/10/a80910e1-46b0-39fa-98f2-5f1072b12be7/656465369468_cover.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "29",
+      "title": "Pani Da Rang (Male)",
+      "artist": "Ayushmann Khurrana",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "preview_url": "/audio/ayushmann-khurrana---pani-da-rang-male.m4a",
+      "apple_url": "https://music.apple.com/us/album/pani-da-rang-male/1542081609?i=1542081610&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/d6/a3/7bd6a3d2-87bc-2699-90f6-d4af41e25d20/18076.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "28",
+      "title": "Brasilian Skies",
+      "artist": "Masayoshi Takanaka",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "preview_url": "/audio/masayoshi-takanaka---brasilian-skies.m4a",
+      "apple_url": "https://music.apple.com/us/album/brasilian-skies/1444076539?i=1444076558&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/65/8f/b5/658fb537-464d-a17f-4a3d-c87c180f4ddd/00602498909386.rgb.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "27",
+      "title": "Stephanie",
+      "artist": "Nafeesisboujee",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "apple_music_id": "1785446120",
+      "preview_url": "/audio/nafeesisboujee---stephanie.m4a",
+      "apple_url": "https://music.apple.com/us/album/stephanie/1785446119?i=1785446120&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/38/27/f83827e9-3dab-46c9-a5c2-be201b1fe21c/198053066316.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "26",
+      "title": "YOU READY?!",
+      "artist": "detahje",
+      "album": "TBD",
+      "date_added": "2025-11-16",
+      "apple_music_id": "1849185488",
+      "preview_url": "/audio/detahje---you-ready.m4a",
+      "apple_url": "https://music.apple.com/us/album/you-ready/1849185476?i=1849185488&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/af/ba/f0/afbaf015-e186-e9b2-7d1a-46132f8a84fe/656465363053_cover.jpg/300x300bb.jpg"
+    },
+    {
+      "id": "25",
+      "title": "VOCOPHORIA",
+      "artist": "Zeñel",
+      "album": "TBD",
+      "date_added": "2025-10-14",
+      "preview_url": "/audio/zeel---vocophoria.m4a",
+      "apple_url": "https://music.apple.com/us/album/vocophoria/1753597157?i=1753597158&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f4/85/53/f48553ed-9072-1125-0d15-2fe044ba5a0a/198595152768.jpg/300x300bb.jpg"
+    },
+    {
       "id": "25",
       "title": "VOCOPHORIA",
       "artist": "Zeñel",
@@ -67,8 +151,8 @@
       "album": "TBD",
       "date_added": "2025-09-22",
       "preview_url": "/audio/amiify---he-dont-deserve-you.m4a",
-      "apple_url": "https://music.apple.com/us/album/he-dont-deserve-you/1827069855?i=1827069856&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a4/a6/c8/a4a6c8a5-e033-1e19-63d3-abf3339f8f65/764656426460_cover.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/he-dont-deserve-you/1850047485?i=1850047489&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/2c/38/272c38aa-f2e3-222c-1790-5b5b7eeaba34/075679594358.jpg/300x300bb.jpg"
     },
     {
       "id": "18",
@@ -87,8 +171,8 @@
       "album": "TBD",
       "date_added": "2025-09-17",
       "preview_url": "/audio/sumin-slom---stoplight.m4a",
-      "apple_url": "https://music.apple.com/us/album/stoplight/1750160583?i=1750160584&uo=4",
-      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b8/b9/ce/b8b9cedb-04ca-2170-ca93-f7a79f75ff93/191953369068.jpg/300x300bb.jpg"
+      "apple_url": "https://music.apple.com/us/album/stoplight/1757545844?i=1757546243&uo=4",
+      "artwork_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f3/4d/82/f34d8203-668c-575c-ed52-2be841008663/191953377520.jpg/300x300bb.jpg"
     },
     {
       "id": "16",
