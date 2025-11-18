@@ -11,7 +11,7 @@ const blogPosts = {
   'nxsweep': () => import('@/content/blog/nxsweep.md?raw'),
   'web-server-deploy-rpi': () => import('@/content/blog/web-server-deploy-rpi.md?raw'),
   'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw'),
-  // 'how-i-travel-cheap': () => import('@/content/blog/how-i-travel-cheap.md?raw')
+  'broke-travel-as-a-college-student': () => import('@/content/blog/broke-travel-as-a-college-student.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
