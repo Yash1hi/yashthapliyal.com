@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface PortfolioItem {
   id: number;
@@ -18,41 +18,44 @@ interface PortfolioSectionProps {
 
 const PortfolioSection = ({ title, id, items }: PortfolioSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            setIsVisible(true);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const items = document.querySelectorAll('.fade-in-section');
-    items.forEach((item) => {
-      observer.observe(item);
-    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      items.forEach((item) => {
-        observer.unobserve(item);
-      });
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
   }, []);
 
   return (
     <section id={id} className="py-16 md:py-24" ref={sectionRef}>
       <div className="container px-4 mx-auto">
-        <h2 className="section-heading">{title}</h2>
-        
+        <h2 className={`section-heading transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>{title}</h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {items.map((item) => (
-            <div 
-              key={item.id} 
-              className="fade-in-section brutalist-card group hover:shadow-md transition-all duration-300"
+          {items.map((item, index) => (
+            <div
+              key={item.id}
+              className={`brutalist-card group hover:shadow-md transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{
+                transitionDelay: isVisible ? `${100 + index * 150}ms` : '0ms'
+              }}
             >
               {item.imageUrl && (
                 <div className="h-48 md:h-56 overflow-hidden border-b border-gray-200 rounded-t-md">

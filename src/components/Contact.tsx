@@ -1,16 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 import { analytics } from '@/lib/analytics';
 
 const Contact = () => {
   const { toast } = useToast();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -70,15 +95,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24">
+    <section id="contact" className="py-16 md:py-24" ref={sectionRef}>
       <div className="container px-4 mx-auto">
-        <h2 className="section-heading">Contact</h2>
+        <h2 className={`section-heading transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Contact</h2>
 
         <div className="grid grid-cols-1 gap-12">
-          <div className="fade-in-section">
+          <div className={`transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h3 className="font-mono text-2xl font-bold mb-4">Let's Connect</h3>
             <p className="mb-6">
-              Interested in working together? Have questions about my work? 
+              Interested in working together? Have questions about my work?
               Feel free to reach out and I'll get back to you as soon as possible.
             </p>
 
@@ -147,7 +172,7 @@ const Contact = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
-            <div className="fade-in-section h-full">
+            <div className={`h-full transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <form onSubmit={handleSubmit} className="brutalist-card h-full">
                 <div className="mb-3">
                   <label htmlFor="name" className="block font-mono text-sm mb-1">NAME</label>
@@ -198,7 +223,7 @@ const Contact = () => {
               </form>
             </div>
 
-            <div className="fade-in-section h-full">
+            <div className={`h-full transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="brutalist-card h-full">
                 <iframe
                   src="https://calendar.notion.so/meet/yashthapliyal/yash1hi"

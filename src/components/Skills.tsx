@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   Code, Camera, Wrench, Globe, Shield, Terminal, Server, Database, Figma, 
   Image, FileText, Briefcase, CheckCircle, Network, Eye, Workflow
@@ -14,7 +14,8 @@ interface SkillGroup {
 
 const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+  const [isVisible, setIsVisible] = useState(false);
+
   const skillGroups: SkillGroup[] = [
     {
       id: 'development',
@@ -83,33 +84,38 @@ const Skills = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            setIsVisible(true);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const items = document.querySelectorAll('.fade-in-section');
-    items.forEach((item) => {
-      observer.observe(item);
-    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      items.forEach((item) => {
-        observer.unobserve(item);
-      });
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
   }, []);
 
   return (
     <section id="skills" className="py-16 md:py-24 bg-gray-100" ref={sectionRef}>
       <div className="container px-4 mx-auto">
-        <h2 className="section-heading text-gray-800">Skills</h2>
-        
+        <h2 className={`section-heading text-gray-800 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Skills</h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {skillGroups.map((group) => (
-            <div key={group.id} className="fade-in-section brutalist-card bg-white shadow-md">
+          {skillGroups.map((group, index) => (
+            <div
+              key={group.id}
+              className={`brutalist-card bg-white shadow-md transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{
+                transitionDelay: isVisible ? `${100 + index * 150}ms` : '0ms'
+              }}
+            >
               <div className="flex items-center gap-3 mb-6 pb-2 border-b border-gray-300">
                 <div className="text-gray-700">
                   {group.icon}
