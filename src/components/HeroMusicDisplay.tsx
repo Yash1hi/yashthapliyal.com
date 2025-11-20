@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { flushSync } from 'react-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronUp, ChevronDown, Play, Pause, ExternalLink } from 'lucide-react';
+import { ChevronUp, ChevronDown, Play, Pause, ExternalLink, ArrowRight } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
+import { useNavigate } from 'react-router-dom';
 
 interface Song {
   id: string;
@@ -31,6 +33,7 @@ const HeroMusicDisplay = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const rotationTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCurrentSongs();
@@ -227,10 +230,32 @@ const HeroMusicDisplay = () => {
   return (
     <div className="mt-4">
       <audio ref={audioRef} />
-      
-      <p className="text-xs text-gray-600 font-mono mb-2">
-        Recent Top Songs - {currentDate && formatDate(currentDate)}
-      </p>
+
+      <div className="flex items-center justify-between mb-2">
+        <p className="text-xs text-gray-600 font-mono">
+          Recent Top Songs - {currentDate && formatDate(currentDate)}
+        </p>
+        <button
+          onClick={() => {
+            analytics.trackNavigation('all_music_from_hero');
+
+            // Check if browser supports View Transitions API
+            if (document.startViewTransition) {
+              document.startViewTransition(() => {
+                flushSync(() => {
+                  navigate('/music');
+                });
+              });
+            } else {
+              navigate('/music');
+            }
+          }}
+          className="text-xs font-mono text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1 cursor-pointer"
+        >
+          View All
+          <ArrowRight className="h-3 w-3" />
+        </button>
+      </div>
 
       <Card className="p-3 bg-white/90 backdrop-blur-sm border border-gray-200">
         <div className="flex items-center space-x-3">

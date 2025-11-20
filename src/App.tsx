@@ -13,6 +13,7 @@ import BlogPost from "./pages/blog/BlogPost";
 import CoffeeTracker from "./pages/CoffeeTracker";
 import Photography from "./pages/Photography";
 import Sandbox from "./pages/Sandbox";
+import AllMusic from "./pages/AllMusic";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/coffee-tracker" element={<CoffeeTracker />} />
           <Route path="/yash1photos" element={<Photography />} />
           <Route path="/sandbox" element={<Sandbox />} />
+          <Route path="/music" element={<AllMusic />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
