@@ -20,7 +20,7 @@ const Navigation = () => {
     { name: 'yash1photos', href: '/yash1photos' },
     // { name: 'Software', href: '/#software' },
     // { name: 'Skills', href: '/#skills' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
     { name: 'Blog', href: '/blog' },
   ];
 

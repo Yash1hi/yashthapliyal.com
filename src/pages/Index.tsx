@@ -94,28 +94,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      
-      <div id="portfolio" className="bg-white">
-        <div className="bg-[#f9f9f9]">
-          <PortfolioSection 
-            title="Software" 
-            id="software" 
-            items={softwareProjects} 
-          />
-        </div>
-        
-
-
-        {/* <PortfolioSection 
-          title="Writing" 
-          id="writing" 
-          items={writingProjects} 
-        /> */}
-      </div>
-      
-      <Skills />
-      <Contact />
-      <Footer />
     </div>
   );
 };
