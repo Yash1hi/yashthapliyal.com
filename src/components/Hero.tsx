@@ -22,7 +22,7 @@ const Hero = () => {
         </h1>
         <div className={`mt-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <p className="font-mono text-xl md:text-2xl">
-            I am a <span className="highlight inline-block">{roles[currentRole]}</span>
+            I am a <span className="highlight inline-block">‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
           </p>
         </div>
       </div>
