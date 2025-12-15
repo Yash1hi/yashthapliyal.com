@@ -16,6 +16,7 @@ import Sandbox from "./pages/Sandbox";
 import AllMusic from "./pages/AllMusic";
 import BrainDump from "./pages/BrainDump";
 import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/music" element={<AllMusic />} />
           <Route path="/brain-dump" element={<BrainDump />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/projects" element={<Projects />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

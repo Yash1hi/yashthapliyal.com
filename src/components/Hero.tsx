@@ -15,13 +15,13 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center noise-bg">
+    <section className="relative h-screen flex items-center justify-center noise-bg overflow-hidden">
       <div className="container px-4 mx-auto text-center">
-        <h1 className={`font-mono text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <h1 className={`font-mono text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           Yash Thapliyal
         </h1>
-        <div className={`mt-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className="font-mono text-xl md:text-2xl">
+        <div className={`mt-4 sm:mt-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p className="font-mono text-lg sm:text-xl md:text-2xl">
             I am a <span className="highlight inline-block">{roles[currentRole]}</span>
           </p>
         </div>

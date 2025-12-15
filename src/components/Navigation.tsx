@@ -17,11 +17,10 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'yash1photos', href: '/yash1photos' },
-    // { name: 'Software', href: '/#software' },
-    // { name: 'Skills', href: '/#skills' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'nerd', href: '/projects' },
+    { name: 'performative', href: '/yash1photos' },
+    { name: 'contact', href: '/contact' },
+    { name: 'blog', href: '/blog' },
   ];
 
   return (
