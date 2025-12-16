@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAllBlogPosts } from '@/lib/blog';
 import { BlogPost } from '@/types/blog';
 import BlogLayout from '@/components/BlogLayout';
+import Head from '@/components/Head';
 
 const BlogList = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -64,6 +65,10 @@ const BlogList = () => {
 
   return (
     <BlogLayout>
+      <Head
+        title="Blog | Yash Thapliyal"
+        description="Blog posts by Yash Thapliyal about software development, security, and technology."
+      />
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
         <div className="grid gap-6">

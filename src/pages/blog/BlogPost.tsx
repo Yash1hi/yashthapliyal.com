@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import { getBlogPost } from '@/lib/blog';
 import { BlogPost as BlogPostType } from '@/types/blog';
 import BlogLayout from '@/components/BlogLayout';
+import Head from '@/components/Head';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -44,6 +45,10 @@ const BlogPost = () => {
 
   return (
     <BlogLayout>
+      <Head
+        title={`${post.title} | Yash Thapliyal`}
+        description={post.description || post.title}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <article className="max-w-3xl mx-auto">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 break-words">{post.title}</h1>

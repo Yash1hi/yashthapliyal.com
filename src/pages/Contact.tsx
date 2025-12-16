@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
+import Head from '@/components/Head';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 import { analytics } from '@/lib/analytics';
@@ -69,6 +70,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Head
+        title="Contact | Yash Thapliyal"
+        description="Get in touch with Yash Thapliyal - software developer, security researcher, and photographer."
+      />
       <Navigation />
 
       <section className="flex-1 flex items-center justify-center px-4 pt-20 pb-8">

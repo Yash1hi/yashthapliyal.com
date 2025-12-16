@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
+import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
 
 interface Photo {
@@ -141,6 +142,10 @@ const Photography = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <Head
+        title="Photography | Yash Thapliyal"
+        description="Photography portfolio by Yash Thapliyal - capturing moments through the lens."
+      />
       <Navigation />
       
       {/* Hero Section */}
