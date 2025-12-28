@@ -8,19 +8,19 @@ const Projects = () => {
   const projectsData = {
     trailofbits: {
       title: "Trail of Bits Resource Page",
-      description: "A fully responsive, auto-updating, cross-app, resource page for Trail of Bits; built with no frameworks.",
+      description: "Aggregated resources, raw HTML/CSS",
       tags: ["Javascript", "HTML", "CSS"],
       link: "https://www.trailofbits.com/opensource/",
     },
     proofgenerator: {
       title: "Logical Proof Generator",
-      description: "Tooling that generates entire proofs using A* search, including all intermediate steps. Constructed new grammar within Scala for scalability.",
+      description: "Automatically generates logical proofs from custom grammatical inputs.",
       tags: ["Scala"],
       link: "https://github.com/Yash1hi/Proof-Generator-3434",
     },
     medication: {
-      title: "Full Stack Medication Management System",
-      description: "Full stack web application for medication tracking and management; integrated with medication dispenser.",
+      title: "Medication Management System",
+      description: "Automated Pill Container and App - 1st place T9Hacks 2025.",
       tags: ["NodeJS", "Twilio", "PostgreSQL", "Arduino"],
       link: "https://www.linkedin.com/posts/suctuk_i-was-fortunate-to-participate-in-the-t9hacks-ugcPost-7298820077385039872-Lhxf",
     },
@@ -38,13 +38,13 @@ const Projects = () => {
     },
     nxsweep: {
       title: "NXSweep",
-      description: "Script that scans your system for the vulnerability used in the NX supply chain attack.",
+      description: "Vulnerability scanning script based on NX supply chain attack.",
       tags: ["Typescript"],
       link: "https://www.yashthapliyal.com/blog/nxsweep",
     },
     scorecard: {
       title: "Scorecard",
-      description: "AI Evaluation's platform.",
+      description: "AI Evaluation platform.",
       tags: ["NextJS", "PostgreSQL", "LiteLLM", "A Lot of Other Stuff TBH"],
       link: "https://www.scorecard.io/",
     },
