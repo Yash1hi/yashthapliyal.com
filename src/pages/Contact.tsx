@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { useToast } from '@/components/ui/use-toast';
@@ -7,12 +7,17 @@ import { analytics } from '@/lib/analytics';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [loaded, setLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -78,7 +83,7 @@ const Contact = () => {
 
       <section className="flex-1 flex items-center justify-center px-4 pt-20 pb-8">
         <div className="w-full max-w-2xl">
-          <form onSubmit={handleSubmit} className="mb-12">
+          <form onSubmit={handleSubmit} className={`mb-12 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="mb-3">
               <label htmlFor="name" className="block font-mono text-sm mb-1">NAME</label>
               <input
@@ -127,7 +132,7 @@ const Contact = () => {
             </button>
           </form>
 
-          <div className="flex justify-center gap-8">
+          <div className={`flex justify-center gap-8 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <a
               href="mailto:yash.thapliyal.007@gmail.com"
               className="w-12 h-12 flex items-center justify-center border border-black hover:bg-black hover:text-white transition-colors"

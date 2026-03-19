@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
 
 const Projects = () => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
   // Project data
   const projectsData = {
     trailofbits: {
@@ -85,10 +90,10 @@ const Projects = () => {
 
       <section className="py-16 md:py-24 pt-32">
         <div className="container px-4 mx-auto max-w-6xl">
-          <h1 className="font-mono text-4xl md:text-5xl font-bold mb-12">projects</h1>
+          <h1 className={`font-mono text-4xl md:text-5xl font-bold mb-12 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>projects</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectOrder.map((projectId) => {
+            {projectOrder.map((projectId, index) => {
               const project = projectsData[projectId];
               return (
                 <a
@@ -96,7 +101,8 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-black p-6 hover:bg-black transition-colors group"
+                  className={`border border-black p-6 hover:bg-black transition-all duration-700 group ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{ transitionDelay: `${100 + index * 75}ms` }}
                   onClick={() => analytics.trackExternalLink(project.link, 'project')}
                 >
                   <h2 className="font-mono text-xl font-bold mb-3 group-hover:text-white">{project.title}</h2>

@@ -14,8 +14,10 @@ const Photography = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [fullImageLoaded, setFullImageLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    setLoaded(true);
     document.title = "Photography Portfolio | Yash Thapliyal";
 
     const photoModules = import.meta.glob('/public/Portfolio-Photos-WebP/*.webp', {
@@ -70,12 +72,12 @@ const Photography = () => {
       {/* Hero Section */}
       <div className="container mx-auto px-6 pt-32 pb-20">
         <div className="text-center max-w-5xl mx-auto mb-20">
-          <h1 className="font-mono text-5xl md:text-7xl font-black mb-8 tracking-tight">
+          <h1 className={`font-mono text-5xl md:text-7xl font-black mb-8 tracking-tight transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="bg-gradient-to-r from-black to-gray-800 text-white px-6 py-4 rounded-2xl shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
               Photography
             </span>
           </h1>
-          <p className="font-mono text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className={`font-mono text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             Fashion, Weddings, Graduation, Creative, and more.
             <br />
             <a
@@ -91,7 +93,7 @@ const Photography = () => {
         </div>
 
         {/* Masonry Photo Grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+        <div className={`columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {photos.map((photo) => (
             <div
               key={photo.id}
