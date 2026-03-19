@@ -1,73 +1,58 @@
-# Welcome to your Lovable project
+# yashthapliyal.com
 
-## Project info
+Personal portfolio website built with React, TypeScript, Vite, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/fc7ee2cb-436d-409c-9fba-306711d97cc0
+## Features
 
-## How can I edit this code?
+- **Blog** — Markdown-based blog with frontmatter, GFM support, and image sizing controls
+- **Photography** — Photo gallery with automated WebP compression and thumbnail generation
+- **Projects** — Showcase of personal projects
+- **Music** — Displays current top songs with Spotify/YouTube links
+- **Coffee Tracker** — Custom page for tracking coffee consumption
+- **P5 Sketch** — Interactive generative art sketch
+- **Contact** — Contact form powered by EmailJS
+- **Analytics** — GA4 event tracking across all features
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Framework**: React 18 + TypeScript
+- **Build**: Vite
+- **Styling**: Tailwind CSS + shadcn/ui (Radix UI)
+- **Routing**: React Router v6
+- **State**: TanStack Query
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fc7ee2cb-436d-409c-9fba-306711d97cc0) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # starts dev server on localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+## Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run compress-photos` | Convert photos to WebP (80% quality) |
+| `npm run generate-thumbnails` | Generate 400x600 thumbnails (60% quality) |
 
-**Use GitHub Codespaces**
+## Adding a Blog Post
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Create a `.md` file in `src/content/blog/` with frontmatter (`title`, `date`, `description`, `tags`)
+2. Add an import entry to the `blogPosts` object in `src/lib/blog.ts`
 
-## What technologies are used for this project?
+## Environment Variables
 
-This project is built with:
+| Variable | Purpose |
+|----------|---------|
+| `VITE_GA_TRACKING_ID` | Google Analytics 4 tracking ID |
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/fc7ee2cb-436d-409c-9fba-306711d97cc0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **Primary**: Lovable platform
+- **Secondary**: Fly.io (Docker, Node 23.7.0, `serve` for static files)
