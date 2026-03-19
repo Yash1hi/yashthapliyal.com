@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
 
@@ -31,26 +32,26 @@ const Navigation = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <a 
-          href="/" 
+        <Link
+          to="/"
           className="font-mono text-xl font-bold"
           onClick={() => analytics.trackNavigation('home')}
         >
           <span className="bg-black text-white px-2 py-1 rounded-md">yash1hi</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             {navItems.map((item) => (
               <li key={item.name}>
-                <a 
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className="font-mono text-sm hover:text-gray-600 transition-colors"
                   onClick={() => analytics.trackNavigation(item.name)}
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -71,8 +72,8 @@ const Navigation = () => {
           <ul className="container mx-auto px-4 py-4">
             {navItems.map((item) => (
               <li key={item.name} className="py-2 border-b border-gray-200 last:border-b-0">
-                <a 
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className="font-mono text-sm block transition-colors hover:text-gray-600"
                   onClick={() => {
                     setMobileMenuOpen(false);
@@ -80,7 +81,7 @@ const Navigation = () => {
                   }}
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
