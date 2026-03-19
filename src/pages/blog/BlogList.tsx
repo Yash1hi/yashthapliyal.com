@@ -9,6 +9,7 @@ const BlogList = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -22,6 +23,7 @@ const BlogList = () => {
         setError('Failed to load blog posts. Please try again later.');
       } finally {
         setLoading(false);
+        requestAnimationFrame(() => setLoaded(true));
       }
     };
 
@@ -70,13 +72,14 @@ const BlogList = () => {
         description="Blog posts by Yash Thapliyal about software development, security, and technology."
       />
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
+        <h1 className={`text-4xl font-bold mb-8 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Blog Posts</h1>
         <div className="grid gap-6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className={`block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${100 + index * 75}ms` }}
             >
               <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
               <p className="text-gray-600 mb-4">{post.description}</p>
