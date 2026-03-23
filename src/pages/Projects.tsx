@@ -101,8 +101,8 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`border border-black p-6 hover:bg-black transition-all duration-700 group ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                  style={{ transitionDelay: `${100 + index * 75}ms` }}
+                  className={`border border-black p-6 hover:bg-black transition-colors duration-150 group ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{ transition: `color 150ms, background-color 150ms, opacity 700ms ease ${100 + index * 75}ms, transform 700ms ease ${100 + index * 75}ms` }}
                   onClick={() => analytics.trackExternalLink(project.link, 'project')}
                 >
                   <h2 className="font-mono text-xl font-bold mb-3 group-hover:text-white">{project.title}</h2>
