@@ -30,6 +30,8 @@ const Photography = () => {
       as: 'url'
     });
 
+    const stripPublic = (u: string) => u.replace(/^\/public\//, '/');
+
     const photoList: Photo[] = Object.entries(photoModules).map(([path, url], index) => {
       const filename = path.split('/').pop()?.split('.')[0] || '';
       const thumbnailKey = Object.keys(thumbnailModules).find(thumbPath =>
@@ -39,8 +41,8 @@ const Photography = () => {
 
       return {
         id: index + 1,
-        imageUrl: url as string,
-        thumbnailUrl,
+        imageUrl: stripPublic(url as string),
+        thumbnailUrl: stripPublic(thumbnailUrl),
         filename,
       };
     });
