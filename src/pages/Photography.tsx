@@ -37,7 +37,7 @@ const Photography = () => {
       const thumbnailKey = Object.keys(thumbnailModules).find(thumbPath =>
         thumbPath.includes(`${filename}-thumb.webp`)
       );
-      const thumbnailUrl = thumbnailKey ? thumbnailModules[thumbnailKey] as string : url as string;
+      const thumbnailUrl = thumbnailKey ? stripPublic(thumbnailModules[thumbnailKey] as string) : stripPublic(url as string);
 
       return {
         id: index + 1,
