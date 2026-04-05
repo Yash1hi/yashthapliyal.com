@@ -30,16 +30,18 @@ const Photography = () => {
       as: 'url'
     });
 
+    const fixPublicUrl = (url: string) => url.replace(/^\/public\//, '/');
+
     const photoList: Photo[] = Object.entries(photoModules).map(([path, url], index) => {
       const filename = path.split('/').pop()?.split('.')[0] || '';
       const thumbnailKey = Object.keys(thumbnailModules).find(thumbPath =>
         thumbPath.includes(`${filename}-thumb.webp`)
       );
-      const thumbnailUrl = thumbnailKey ? thumbnailModules[thumbnailKey] as string : url as string;
+      const thumbnailUrl = thumbnailKey ? fixPublicUrl(thumbnailModules[thumbnailKey] as string) : fixPublicUrl(url as string);
 
       return {
         id: index + 1,
-        imageUrl: url as string,
+        imageUrl: fixPublicUrl(url as string),
         thumbnailUrl,
         filename,
       };
