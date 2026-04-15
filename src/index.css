@@ -47,12 +47,19 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border selection:bg-gray-700 selection:text-white;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overscroll-behavior: none;
   }
   
   h1, h2, h3, h4, h5, h6 {
