@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { getBlogPost } from '@/lib/blog';
 import { BlogPost as BlogPostType } from '@/types/blog';
 import BlogLayout from '@/components/BlogLayout';
@@ -58,6 +59,7 @@ const BlogPost = () => {
           <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-xl [&>h1]:sm:text-2xl [&>h2]:mt-6 [&>h2]:sm:mt-8 [&>h2]:mb-3 [&>h2]:sm:mb-4 [&>h2]:text-lg [&>h2]:sm:text-xl [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:sm:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-4 [&>ol]:sm:ml-6 [&>ol]:mb-4 [&>li]:mb-2 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold [&>a]:break-words [&>pre]:overflow-x-auto [&>pre]:max-w-full [&>code]:break-words">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
               components={{
                 img: ({ node, alt, src, title, ...props }) => {
                   // Size presets (responsive)
