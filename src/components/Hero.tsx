@@ -25,6 +25,22 @@ const FRICTION_PER_SECOND = 0.08;   // velocity multiplier per 1s (lower = more 
 const WALL_PADDING = 12;
 const LN_FRICTION = Math.log(FRICTION_PER_SECOND);
 
+// Cursor must be moving above this speed for the water-push to activate, so you can
+// approach a bubble slowly and grab it without it darting away.
+const REPEL_MIN_SPEED = 120;          // px/s
+const REPEL_FULL_SPEED = 700;         // px/s at which push is at full strength
+const CURSOR_IDLE_MS = 60;            // ms; after this with no motion, cursor speed = 0
+
+// Spring used while a bubble is grabbed — under-damped for Mii/Tomodachi wobble.
+const GRAB_STIFFNESS = 220;
+const GRAB_DAMPING = 10;
+const GRAB_SCALE = 1.08;
+// Constant idle jiggle layered on top of the spring so a held-still bubble still wobbles.
+const WOBBLE_POS_AMP = 2.2;     // px
+const WOBBLE_SCALE_AMP = 0.025; // ± scale
+const WOBBLE_TILT_FROM_VEL = 0.05; // deg per px/s of bubble velocity (capped)
+const WOBBLE_TILT_MAX = 12;     // deg
+
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
@@ -35,9 +51,16 @@ const Hero = () => {
   const activeBubbleRef = useRef<HTMLSpanElement>(null);
   const thrownRef = useRef<ThrownBubble[]>([]);
   const bubbleElRefs = useRef<Map<number, HTMLSpanElement>>(new Map());
-  const bubbleStateRef = useRef<Map<number, { x: number; y: number; vx: number; vy: number }>>(new Map());
+  const bubbleStateRef = useRef<Map<number, {
+    x: number; y: number; vx: number; vy: number;
+    grabbed?: boolean; grabOffsetX?: number; grabOffsetY?: number; grabStartTime?: number;
+  }>>(new Map());
   const cursorRef = useRef<{ x: number; y: number } | null>(null);
   const cursorElRef = useRef<HTMLDivElement>(null);
+  const cursorSpeedRef = useRef(0);
+  const cursorLastSampleRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const cursorLastMoveTimeRef = useRef(0);
+  const grabbedIdRef = useRef<number | null>(null);
   const [cursorOverHero, setCursorOverHero] = useState(false);
   const rafRef = useRef<number>();
 
@@ -145,7 +168,23 @@ const Hero = () => {
   useEffect(() => {
     let lastOver = false;
     const handleMove = (e: MouseEvent) => {
+      const now = performance.now();
       cursorRef.current = { x: e.clientX, y: e.clientY };
+      cursorLastMoveTimeRef.current = now;
+
+      const prev = cursorLastSampleRef.current;
+      if (prev) {
+        const dt = (now - prev.t) / 1000;
+        if (dt > 0) {
+          const sx = (e.clientX - prev.x) / dt;
+          const sy = (e.clientY - prev.y) / dt;
+          const instant = Math.hypot(sx, sy);
+          // Light smoothing — favor responsiveness so the speed gate reacts immediately.
+          cursorSpeedRef.current = cursorSpeedRef.current * 0.4 + instant * 0.6;
+        }
+      }
+      cursorLastSampleRef.current = { x: e.clientX, y: e.clientY, t: now };
+
       const el = cursorElRef.current;
       if (el) {
         el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
@@ -170,10 +209,16 @@ const Hero = () => {
         }
       }
     };
+    const handlePointerMove = (e: PointerEvent) => {
+      // Mirror move into the same handler so pointer-captured drags still update cursorRef.
+      handleMove(e as unknown as MouseEvent);
+    };
     window.addEventListener('mousemove', handleMove);
+    window.addEventListener('pointermove', handlePointerMove);
     window.addEventListener('mouseout', handleOut);
     return () => {
       window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('mouseout', handleOut);
     };
   }, []);
@@ -184,6 +229,45 @@ const Hero = () => {
       document.body.classList.remove('hero-cursor-hidden');
     };
   }, [cursorOverHero]);
+
+  useEffect(() => {
+    const handleUp = () => {
+      const id = grabbedIdRef.current;
+      if (id != null) {
+        const st = bubbleStateRef.current.get(id);
+        if (st) st.grabbed = false;
+        grabbedIdRef.current = null;
+      }
+    };
+    window.addEventListener('pointerup', handleUp);
+    window.addEventListener('pointercancel', handleUp);
+    return () => {
+      window.removeEventListener('pointerup', handleUp);
+      window.removeEventListener('pointercancel', handleUp);
+    };
+  }, []);
+
+  const handleGrab = (id: number, e: React.PointerEvent<HTMLSpanElement>) => {
+    e.preventDefault();
+    const st = bubbleStateRef.current.get(id);
+    const section = sectionRef.current;
+    if (!st || !section) return;
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      /* setPointerCapture can throw on already-captured pointer; safe to ignore */
+    }
+    const sectionRect = section.getBoundingClientRect();
+    const bubbleVpX = sectionRect.left + st.x;
+    const bubbleVpY = sectionRect.top + st.y;
+    st.grabbed = true;
+    st.grabOffsetX = e.clientX - bubbleVpX;
+    st.grabOffsetY = e.clientY - bubbleVpY;
+    st.grabStartTime = performance.now();
+    st.vx = 0;
+    st.vy = 0;
+    grabbedIdRef.current = id;
+  };
 
   useEffect(() => {
     let prevTime = performance.now();
@@ -199,6 +283,15 @@ const Hero = () => {
         const decay = Math.pow(FRICTION_PER_SECOND, dt);
         const vw = window.innerWidth;
         const vh = window.innerHeight;
+
+        // Cursor stopped moving recently → speed is 0.
+        if (now - cursorLastMoveTimeRef.current > CURSOR_IDLE_MS) {
+          cursorSpeedRef.current = 0;
+        }
+        const speedFactor = Math.max(
+          0,
+          Math.min(1, (cursorSpeedRef.current - REPEL_MIN_SPEED) / (REPEL_FULL_SPEED - REPEL_MIN_SPEED))
+        );
 
         for (const b of thrownRef.current) {
           const el = bubbleElRefs.current.get(b.id);
@@ -216,26 +309,38 @@ const Hero = () => {
             bubbleStateRef.current.set(b.id, st);
           }
 
-          if (cursor) {
-            const centerX = sectionRect.left + st.x + b.width / 2;
-            const centerY = sectionRect.top + st.y + b.height / 2;
-            const dx = centerX - cursor.x;
-            const dy = centerY - cursor.y;
-            const dist = Math.hypot(dx, dy);
-            if (dist < REPEL_RADIUS && dist > 0) {
-              const t = 1 - dist / REPEL_RADIUS;
-              const accel = t * t * PUSH_ACCEL;
-              st.vx += (dx / dist) * accel * dt;
-              st.vy += (dy / dist) * accel * dt;
+          if (st.grabbed && cursor) {
+            // Spring toward cursor + grab offset. Under-damped → wobble.
+            const targetX = cursor.x - sectionRect.left - (st.grabOffsetX ?? 0);
+            const targetY = cursor.y - sectionRect.top - (st.grabOffsetY ?? 0);
+            const fx = (targetX - st.x) * GRAB_STIFFNESS - st.vx * GRAB_DAMPING;
+            const fy = (targetY - st.y) * GRAB_STIFFNESS - st.vy * GRAB_DAMPING;
+            st.vx += fx * dt;
+            st.vy += fy * dt;
+            st.x += st.vx * dt;
+            st.y += st.vy * dt;
+          } else {
+            if (cursor && speedFactor > 0) {
+              const centerX = sectionRect.left + st.x + b.width / 2;
+              const centerY = sectionRect.top + st.y + b.height / 2;
+              const dx = centerX - cursor.x;
+              const dy = centerY - cursor.y;
+              const dist = Math.hypot(dx, dy);
+              if (dist < REPEL_RADIUS && dist > 0) {
+                const t = 1 - dist / REPEL_RADIUS;
+                const accel = t * t * PUSH_ACCEL * speedFactor;
+                st.vx += (dx / dist) * accel * dt;
+                st.vy += (dy / dist) * accel * dt;
+              }
             }
+
+            st.x += st.vx * dt;
+            st.y += st.vy * dt;
+            st.vx *= decay;
+            st.vy *= decay;
           }
 
-          st.x += st.vx * dt;
-          st.y += st.vy * dt;
-          st.vx *= decay;
-          st.vy *= decay;
-
-          // Soft walls: clamp position to viewport, zero velocity component into the wall.
+          // Soft walls (apply in both modes so grabbed bubbles can't escape the section).
           const minX = -sectionRect.left + WALL_PADDING;
           const maxX = -sectionRect.left + vw - b.width - WALL_PADDING;
           const minY = -sectionRect.top + WALL_PADDING;
@@ -245,7 +350,24 @@ const Hero = () => {
           if (st.y < minY) { st.y = minY; if (st.vy < 0) st.vy = 0; }
           else if (st.y > maxY) { st.y = maxY; if (st.vy > 0) st.vy = 0; }
 
-          el.style.transform = `translate3d(${st.x - b.startX}px, ${st.y - b.startY}px, 0)`;
+          let wobbleX = 0;
+          let wobbleY = 0;
+          let scale = 1;
+          let tilt = 0;
+          if (st.grabbed) {
+            const grabT = (now - (st.grabStartTime ?? now)) / 1000;
+            // Two slightly de-tuned sines per axis → organic, non-repeating jiggle.
+            wobbleX = Math.sin(grabT * 6.3) * WOBBLE_POS_AMP + Math.sin(grabT * 11.1 + 0.7) * (WOBBLE_POS_AMP * 0.5);
+            wobbleY = Math.sin(grabT * 7.7 + 1.2) * WOBBLE_POS_AMP + Math.sin(grabT * 13.5) * (WOBBLE_POS_AMP * 0.4);
+            const scalePulse = 1 + Math.sin(grabT * 4.5) * WOBBLE_SCALE_AMP;
+            scale = GRAB_SCALE * scalePulse;
+            // Tilt opposite to motion direction so the body "drags behind" the grab point.
+            const rawTilt = -st.vx * WOBBLE_TILT_FROM_VEL;
+            tilt = Math.max(-WOBBLE_TILT_MAX, Math.min(WOBBLE_TILT_MAX, rawTilt));
+          }
+          const tx = st.x - b.startX + wobbleX;
+          const ty = st.y - b.startY + wobbleY;
+          el.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${tilt}deg) scale(${scale})`;
         }
 
         for (const id of Array.from(bubbleStateRef.current.keys())) {
@@ -291,7 +413,8 @@ const Hero = () => {
             if (el) bubbleElRefs.current.set(b.id, el);
             else bubbleElRefs.current.delete(b.id);
           }}
-          className="highlight bubble-thrown absolute font-mono text-lg sm:text-xl md:text-2xl"
+          onPointerDown={(e) => handleGrab(b.id, e)}
+          className="highlight bubble-thrown absolute font-mono text-lg sm:text-xl md:text-2xl select-none touch-none"
           style={{
             left: `${b.startX}px`,
             top: `${b.startY}px`,

@@ -94,7 +94,6 @@
 
   .bubble-thrown {
     animation: bubble-fade var(--fade-duration, 1s) ease-out var(--fade-delay, 5.5s) forwards;
-    pointer-events: none;
     white-space: nowrap;
     will-change: transform, opacity;
   }
