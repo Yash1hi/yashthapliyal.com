@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { analytics } from '@/lib/analytics';
+import { usePostHog } from '@posthog/react';
 
 const Navigation = () => {
+  const posthog = usePostHog();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,7 +37,7 @@ const Navigation = () => {
         <Link
           to="/"
           className="font-mono text-xl font-bold"
-          onClick={() => analytics.trackNavigation('home')}
+          onClick={() => { analytics.trackNavigation('home'); posthog?.capture('navigation_clicked', { destination: 'home' }); }}
         >
           <span className="bg-black text-white px-2 py-1 rounded-md">yash1hi</span>
         </Link>
@@ -48,7 +50,7 @@ const Navigation = () => {
                 <Link
                   to={item.href}
                   className="font-mono text-sm hover:text-gray-600 transition-colors"
-                  onClick={() => analytics.trackNavigation(item.name)}
+                  onClick={() => { analytics.trackNavigation(item.name); posthog?.capture('navigation_clicked', { destination: item.name }); }}
                 >
                   {item.name}
                 </Link>
@@ -78,6 +80,7 @@ const Navigation = () => {
                   onClick={() => {
                     setMobileMenuOpen(false);
                     analytics.trackNavigation(item.name);
+                    posthog?.capture('navigation_clicked', { destination: item.name, source: 'mobile' });
                   }}
                 >
                   {item.name}

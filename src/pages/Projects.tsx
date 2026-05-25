@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
+import { usePostHog } from '@posthog/react';
 
 const experienceData = [
   {
@@ -49,6 +50,7 @@ const experienceData = [
 ];
 
 const Projects = () => {
+  const posthog = usePostHog();
   const [loaded, setLoaded] = useState(false);
   const [expIndex, setExpIndex] = useState(0);
   const [expPhase, setExpPhase] = useState<'visible' | 'fade-date' | 'slide-role' | 'entering'>('visible');
@@ -236,7 +238,7 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className={`border border-black p-6 hover:bg-black transition-colors duration-150 group ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   style={{ transition: `color 150ms, background-color 150ms, opacity 700ms ease ${100 + index * 75}ms, transform 700ms ease ${100 + index * 75}ms` }}
-                  onClick={() => analytics.trackExternalLink(project.link, 'project')}
+                  onClick={() => { analytics.trackExternalLink(project.link, 'project'); posthog?.capture('project_link_clicked', { project_title: project.title, project_url: project.link }); }}
                 >
                   <h2 className="font-mono text-xl font-bold mb-3 group-hover:text-white">{project.title}</h2>
                   <p className="text-sm mb-4 text-gray-700 group-hover:text-gray-200">{project.description}</p>

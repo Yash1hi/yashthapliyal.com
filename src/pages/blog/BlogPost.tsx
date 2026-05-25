@@ -6,9 +6,11 @@ import { getBlogPost } from '@/lib/blog';
 import { BlogPost as BlogPostType } from '@/types/blog';
 import BlogLayout from '@/components/BlogLayout';
 import Head from '@/components/Head';
+import { usePostHog } from '@posthog/react';
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const posthog = usePostHog();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +20,9 @@ const BlogPost = () => {
       const postData = await getBlogPost(slug);
       setPost(postData);
       setLoading(false);
+      if (postData) {
+        posthog?.capture('blog_post_viewed', { post_title: postData.title, post_slug: slug, post_tags: postData.tags });
+      }
     };
 
     loadPost();

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 import { analytics } from '@/lib/analytics';
+import { usePostHog } from '@posthog/react';
 
 const Contact = () => {
+  const posthog = usePostHog();
   const { toast } = useToast();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,6 +46,7 @@ const Contact = () => {
     // Track form start on first interaction
     if (!formData.name && !formData.email && !formData.message) {
       analytics.trackContactFormStart();
+      posthog?.capture('contact_form_started');
     }
   };
 
@@ -51,6 +54,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     analytics.trackContactFormSubmit();
+    posthog?.capture('contact_form_submitted');
 
     try {
       // Replace these with your actual EmailJS credentials
@@ -68,7 +72,8 @@ const Contact = () => {
       );
 
       analytics.trackContactFormSuccess();
-      
+      posthog?.capture('contact_form_success');
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -83,6 +88,8 @@ const Contact = () => {
     } catch (error) {
       console.error('Error sending email:', error);
       analytics.trackContactFormError(error instanceof Error ? error.message : 'Unknown error');
+      posthog?.capture('contact_form_error', { error: error instanceof Error ? error.message : 'Unknown error' });
+      posthog?.captureException(error);
       
       toast({
         title: "Error",
@@ -120,7 +127,7 @@ const Contact = () => {
                   <a 
                     href="mailto:yash.thapliyal.007@gmail.com" 
                     className="text-lg hover:underline"
-                    onClick={() => analytics.trackExternalLink('mailto:yash.thapliyal.007@gmail.com', 'email')}
+                    onClick={() => { analytics.trackExternalLink('mailto:yash.thapliyal.007@gmail.com', 'email'); posthog?.capture('external_link_clicked', { platform: 'email' }); }}
                   >
                     yash.thapliyal.007@gmail.com
                   </a>
@@ -140,7 +147,7 @@ const Contact = () => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-lg hover:underline"
-                    onClick={() => analytics.trackExternalLink('https://github.com/Yash1hi', 'github')}
+                    onClick={() => { analytics.trackExternalLink('https://github.com/Yash1hi', 'github'); posthog?.capture('external_link_clicked', { platform: 'github' }); }}
                   >
                     github.com/Yash1hi
                   </a>
@@ -162,7 +169,7 @@ const Contact = () => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-lg hover:underline"
-                    onClick={() => analytics.trackExternalLink('https://www.linkedin.com/in/yash1hi/', 'linkedin')}
+                    onClick={() => { analytics.trackExternalLink('https://www.linkedin.com/in/yash1hi/', 'linkedin'); posthog?.capture('external_link_clicked', { platform: 'linkedin' }); }}
                   >
                     linkedin.com/in/yash1hi
                   </a>

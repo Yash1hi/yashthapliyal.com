@@ -4,8 +4,10 @@ import { getAllBlogPosts } from '@/lib/blog';
 import { BlogPost } from '@/types/blog';
 import BlogLayout from '@/components/BlogLayout';
 import Head from '@/components/Head';
+import { usePostHog } from '@posthog/react';
 
 const BlogList = () => {
+  const posthog = usePostHog();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -80,6 +82,7 @@ const BlogList = () => {
               to={`/blog/${post.slug}`}
               className={`block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{ transitionDelay: `${100 + index * 75}ms` }}
+              onClick={() => posthog?.capture('blog_post_clicked', { post_title: post.title, post_slug: post.slug, post_tags: post.tags })}
             >
               <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
               <p className="text-gray-600 mb-4">{post.description}</p>

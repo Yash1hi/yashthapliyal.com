@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronUp, ChevronDown, Play, Pause, ExternalLink, ArrowRight } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import { useNavigate } from 'react-router-dom';
+import { usePostHog } from '@posthog/react';
 
 interface Song {
   id: string;
@@ -24,6 +25,7 @@ interface AllSongsData {
 }
 
 const HeroMusicDisplay = () => {
+  const posthog = usePostHog();
   const [songs, setSongs] = useState<Song[]>([]);
   const [currentDate, setCurrentDate] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -166,6 +168,7 @@ const HeroMusicDisplay = () => {
       if (isPlaying) {
         setIsPlaying(false);
         analytics.trackSongPaused(currentSong.title, currentSong.artist, currentIndex + 1);
+        posthog?.capture('music_song_paused', { song_title: currentSong.title, artist: currentSong.artist, position: currentIndex + 1 });
       } else {
         // If no preview URL is available, just open the external link
         if (!currentSong.preview_url) {
@@ -179,6 +182,7 @@ const HeroMusicDisplay = () => {
         }
         setIsPlaying(true);
         analytics.trackSongPlayed(currentSong.title, currentSong.artist, currentIndex + 1);
+        posthog?.capture('music_song_played', { song_title: currentSong.title, artist: currentSong.artist, position: currentIndex + 1 });
       }
     }
   };
@@ -186,6 +190,7 @@ const HeroMusicDisplay = () => {
   const handleExternalLink = (platform: string, url: string) => {
     if (currentSong) {
       analytics.trackExternalMusicLink(platform, currentSong.title, currentSong.artist);
+      posthog?.capture('music_external_link_clicked', { platform, song_title: currentSong.title, artist: currentSong.artist });
     }
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -238,6 +243,7 @@ const HeroMusicDisplay = () => {
         <button
           onClick={() => {
             analytics.trackNavigation('all_music_from_hero');
+            posthog?.capture('music_view_all_clicked');
 
             // Check if browser supports View Transitions API
             if (document.startViewTransition) {

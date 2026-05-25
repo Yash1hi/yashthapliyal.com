@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
+import { usePostHog } from '@posthog/react';
 
 interface Photo {
   id: number;
@@ -11,6 +12,7 @@ interface Photo {
 }
 
 const Photography = () => {
+  const posthog = usePostHog();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [fullImageLoaded, setFullImageLoaded] = useState(false);
@@ -55,6 +57,7 @@ const Photography = () => {
     setFullImageLoaded(false);
     document.body.style.overflow = 'hidden';
     analytics.trackPhotoModalOpen(photo.filename);
+    posthog?.capture('photo_modal_opened', { photo_filename: photo.filename });
   };
 
   const closeModal = () => {
