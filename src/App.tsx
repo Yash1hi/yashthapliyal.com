@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 import { analytics } from '@/lib/analytics';
+import { useLenis } from '@/hooks/useLenis';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import P5Sketch from "./pages/P5Sketch";
@@ -20,9 +21,10 @@ import Projects from "./pages/Projects";
 
 const queryClient = new QueryClient();
 
-// Component to track page views
+// Component to track page views and initialize smooth scroll
 const PageTracker = () => {
   const location = useLocation();
+  useLenis();
 
   useEffect(() => {
     analytics.trackPageView(location.pathname);

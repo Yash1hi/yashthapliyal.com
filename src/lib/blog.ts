@@ -12,7 +12,7 @@ const blogPosts = {
   'web-server-deploy-rpi': () => import('@/content/blog/web-server-deploy-rpi.md?raw'),
   'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw'),
   'broke-travel-as-a-college-student': () => import('@/content/blog/broke-travel-as-a-college-student.md?raw'),
-  'new-post': () => import('@/content/blog/new-post.md?raw'),
+  'opus-4-7-web-design': () => import('@/content/blog/opus-4-7-web-design.md?raw'),
   'six-months-at-scorecard': () => import('@/content/blog/six-months-at-scorecard.md?raw')
 };
 

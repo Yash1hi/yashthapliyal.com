@@ -47,12 +47,19 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border selection:bg-gray-700 selection:text-white;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overscroll-behavior: none;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -79,6 +86,41 @@
   
   .highlight {
     @apply bg-gray-800 text-white px-1 py-0.5 rounded-sm;
+  }
+
+  .bubble-enter {
+    animation: bubble-enter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .bubble-thrown {
+    animation: bubble-fade var(--fade-duration, 1s) ease-out var(--fade-delay, 5.5s) forwards;
+    white-space: nowrap;
+    will-change: transform, opacity;
+  }
+
+  @keyframes bubble-enter {
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  body.hero-cursor-hidden,
+  body.hero-cursor-hidden * {
+    cursor: none !important;
+  }
+
+  @keyframes bubble-fade {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
   
   .grid-item {
