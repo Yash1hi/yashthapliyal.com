@@ -31,15 +31,17 @@ const REPEL_MIN_SPEED = 120;          // px/s
 const REPEL_FULL_SPEED = 700;         // px/s at which push is at full strength
 const CURSOR_IDLE_MS = 60;            // ms; after this with no motion, cursor speed = 0
 
-// Spring used while a bubble is grabbed — under-damped for Mii/Tomodachi wobble.
-const GRAB_STIFFNESS = 220;
-const GRAB_DAMPING = 10;
+// During grab, position is set directly (no spring lag). Velocity is smoothed from
+// per-frame displacement so release/throw feels natural.
+const GRAB_VEL_SMOOTH = 0.55;   // exponential smoothing α for throw velocity (higher = smoother)
 const GRAB_SCALE = 1.08;
-// Constant idle jiggle layered on top of the spring so a held-still bubble still wobbles.
-const WOBBLE_POS_AMP = 2.2;     // px
-const WOBBLE_SCALE_AMP = 0.025; // ± scale
+// Wobble scales with cursor speed so it fades when held still and kicks in when moving.
+const WOBBLE_POS_AMP = 2.5;       // px at full speed
+const WOBBLE_SCALE_AMP = 0.028;   // ± scale at full speed
+const WOBBLE_SPEED_FULL = 350;    // px/s at which wobble reaches full amplitude
+const WOBBLE_BREATH_AMP = 0.008;  // tiny constant scale pulse so held-still bubbles feel alive
 const WOBBLE_TILT_FROM_VEL = 0.05; // deg per px/s of bubble velocity (capped)
-const WOBBLE_TILT_MAX = 12;     // deg
+const WOBBLE_TILT_MAX = 12;       // deg
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -264,8 +266,7 @@ const Hero = () => {
     st.grabOffsetX = e.clientX - bubbleVpX;
     st.grabOffsetY = e.clientY - bubbleVpY;
     st.grabStartTime = performance.now();
-    st.vx = 0;
-    st.vy = 0;
+    // Don't zero velocity — let the spring absorb existing momentum smoothly.
     grabbedIdRef.current = id;
   };
 
@@ -310,15 +311,16 @@ const Hero = () => {
           }
 
           if (st.grabbed && cursor) {
-            // Spring toward cursor + grab offset. Under-damped → wobble.
+            // Direct position — element is locked to cursor with zero lag.
+            // Velocity is smoothed from actual displacement so throw-on-release feels natural.
             const targetX = cursor.x - sectionRect.left - (st.grabOffsetX ?? 0);
             const targetY = cursor.y - sectionRect.top - (st.grabOffsetY ?? 0);
-            const fx = (targetX - st.x) * GRAB_STIFFNESS - st.vx * GRAB_DAMPING;
-            const fy = (targetY - st.y) * GRAB_STIFFNESS - st.vy * GRAB_DAMPING;
-            st.vx += fx * dt;
-            st.vy += fy * dt;
-            st.x += st.vx * dt;
-            st.y += st.vy * dt;
+            const rawVx = (targetX - st.x) / dt;
+            const rawVy = (targetY - st.y) / dt;
+            st.vx = st.vx * GRAB_VEL_SMOOTH + rawVx * (1 - GRAB_VEL_SMOOTH);
+            st.vy = st.vy * GRAB_VEL_SMOOTH + rawVy * (1 - GRAB_VEL_SMOOTH);
+            st.x = targetX;
+            st.y = targetY;
           } else {
             if (cursor && speedFactor > 0) {
               const centerX = sectionRect.left + st.x + b.width / 2;
@@ -356,10 +358,15 @@ const Hero = () => {
           let tilt = 0;
           if (st.grabbed) {
             const grabT = (now - (st.grabStartTime ?? now)) / 1000;
-            // Two slightly de-tuned sines per axis → organic, non-repeating jiggle.
-            wobbleX = Math.sin(grabT * 6.3) * WOBBLE_POS_AMP + Math.sin(grabT * 11.1 + 0.7) * (WOBBLE_POS_AMP * 0.5);
-            wobbleY = Math.sin(grabT * 7.7 + 1.2) * WOBBLE_POS_AMP + Math.sin(grabT * 13.5) * (WOBBLE_POS_AMP * 0.4);
-            const scalePulse = 1 + Math.sin(grabT * 4.5) * WOBBLE_SCALE_AMP;
+            const speed = Math.hypot(st.vx, st.vy);
+            const speedFactor = Math.min(1, speed / WOBBLE_SPEED_FULL);
+            const posAmp = WOBBLE_POS_AMP * speedFactor;
+            const scaleAmp = WOBBLE_SCALE_AMP * speedFactor;
+            // Two slightly de-tuned sines per axis → organic jiggle, fades when held still.
+            wobbleX = Math.sin(grabT * 6.3) * posAmp + Math.sin(grabT * 11.1 + 0.7) * (posAmp * 0.5);
+            wobbleY = Math.sin(grabT * 7.7 + 1.2) * posAmp + Math.sin(grabT * 13.5) * (posAmp * 0.4);
+            // Constant slow breath so a held-still bubble feels alive, not frozen.
+            const scalePulse = 1 + Math.sin(grabT * 1.4) * WOBBLE_BREATH_AMP + Math.sin(grabT * 4.5) * scaleAmp;
             scale = GRAB_SCALE * scalePulse;
             // Tilt opposite to motion direction so the body "drags behind" the grab point.
             const rawTilt = -st.vx * WOBBLE_TILT_FROM_VEL;
