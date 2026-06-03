@@ -238,7 +238,7 @@ const HeroMusicDisplay = () => {
 
       <div className="flex items-center justify-between mb-2">
         <p className="text-xs text-gray-600 font-mono">
-          Recent Top Songs - {currentDate && formatDate(currentDate)}
+          Recent Top Songs
         </p>
         <button
           onClick={() => {
