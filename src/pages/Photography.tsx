@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
-import HeroMusicDisplay from '@/components/HeroMusicDisplay';
 import { analytics } from '@/lib/analytics';
 import { usePostHog } from '@posthog/react';
 
@@ -76,12 +75,9 @@ const Photography = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <div className="container mx-auto px-6 pt-20 pb-20">
+      <div className="container mx-auto px-6 pt-32 pb-20">
         <div className="text-center max-w-5xl mx-auto mb-20">
-          <div className={`mb-6 mx-auto w-full max-w-sm transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <HeroMusicDisplay />
-          </div>
-          <h1 className={`font-mono text-5xl md:text-7xl font-black mb-8 tracking-tight transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h1 className={`font-mono text-5xl md:text-7xl font-black mb-8 tracking-tight transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="bg-gradient-to-r from-black to-gray-800 text-white px-6 py-4 rounded-2xl shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
               Photography
             </span>
