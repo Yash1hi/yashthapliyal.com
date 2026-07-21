@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import P5Sketch from "./pages/P5Sketch";
 import BlogList from "./pages/blog/BlogList";
 import BlogPost from "./pages/blog/BlogPost";
+import BlogEditor from "./pages/blog/BlogEditor";
 import CoffeeTracker from "./pages/CoffeeTracker";
 import Photography from "./pages/Photography";
 import Sandbox from "./pages/Sandbox";
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/MrSqueebleEXE" element={<P5Sketch />} />
           <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/editor" element={<BlogEditor />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/coffee-tracker" element={<CoffeeTracker />} />
           <Route path="/yash1photos" element={<Photography />} />
