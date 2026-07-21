@@ -13,7 +13,8 @@ const blogPosts = {
   'hackbubu2025-sqeeble': () => import('@/content/blog/hackbubu2025-sqeeble.md?raw'),
   'broke-travel-as-a-college-student': () => import('@/content/blog/broke-travel-as-a-college-student.md?raw'),
   'opus-4-7-web-design': () => import('@/content/blog/opus-4-7-web-design.md?raw'),
-  'six-months-at-scorecard': () => import('@/content/blog/six-months-at-scorecard.md?raw')
+  'six-months-at-scorecard': () => import('@/content/blog/six-months-at-scorecard.md?raw'),
+  'do-we-just-want-slaves': () => import('@/content/blog/do-we-just-want-slaves.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {

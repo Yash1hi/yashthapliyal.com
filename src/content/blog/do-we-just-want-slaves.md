@@ -1,0 +1,14 @@
+---
+title: "Do we just want slaves?"
+date: "2026-07-21"
+description: "I mean like we don't but that's not as catchy"
+tags: ["AI", "Philosophy", "Why?"]
+---
+
+This weekend I went to [OpenSauce](https://www.opensauce.com/), the spiritual successor to the [Maker Faire](https://makerfaire.com/bay-area/) of San Mateo that I grew up with. I try and go every year to re-inspire my inner gnome by remembering that the creators I see online are real, and love what they do. As always, there was a lot of AI hate throughout the talks and panels, directed into a general animosity towards the path the world is hurtling down. 
+
+This year was a shift from previous years. Before there was a "we should have never made AI in the first place." Now there is a reluctant acceptance and admission that yes, people *are* building something useful every now and then. But something irked me about what people were OK with automating away v.s. isolating from their current workflow. [The Brain Scoop](https://www.youtube.com/user/thebrainscoop) was vehemently against AI's existence in [PANEL: Uh Oh! It's an AI Panel](https://www.opensauce.com/agenda), but admitted that it made her life easier when it comes to video editing. In the same breath, [Applied Science](https://www.youtube.com/@AppliedScience) talked about how he enjoyed the ability to create 10 prototypes out of thin air, picking on the ones he personally thought were best. Even in [PANEL: Educational Content in the Age of AI Slop](https://www.opensauce.com/agenda), I saw the references to AI making lives easier, but [VSauce](https://www.youtube.com/user/Vsauce) advocating for sending his child to a school removed from computers. 
+
+So I pose the very simple question: ***do we just want slaves?*** It sounds like behind the fear of a loss of creativity and inspiration and passion in the world, *we* are OK with automating away the work that *we* don't *want* to do. I'm a creative as much as I am a STEM nerd, and I've watched the headbanging, stressful, but stockholmed love of coding be all but abstracted away from me. I'm watching this happen to the paintbrush in real time. My question is, are we only ok with getting rid of roles that don't directly affect us? That we consider low skill, repetitive, *boring?* I know that what I consider boring is vastly different than what others do, and I know that even "low skill" tasks have quirks that are only mastered by years of tenacious effort and attention, so where do I draw the line on what's ok?
+
+I'm not here to pose an answer to this. Like a lot of people, I work in AI, and very specifically the field of making it better. I'm proud of the work that I do, and I feel that I'm working towards a better future. Really, truly, deeply, from the bottom of my heart, I want to believe that everyone else is working towards that as well.
