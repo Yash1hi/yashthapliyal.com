@@ -162,8 +162,6 @@ const BlogEditor = () => {
 
   const fullMarkdown = `${frontmatter}\n\n${draft.body}\n`;
 
-  const importLine = `  '${effectiveSlug}': () => import('@/content/blog/${effectiveSlug}.md?raw'),`;
-
   const copy = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -211,6 +209,57 @@ const BlogEditor = () => {
     });
   };
 
+  // Paste a URL while text is selected -> wrap it as a markdown link.
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const el = bodyRef.current;
+    if (!el) return;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    if (start === end) return; // no selection: let the browser paste normally
+    const pasted = e.clipboardData.getData('text').trim();
+    const isUrl = /^(https?:\/\/|mailto:)\S+$/i.test(pasted);
+    if (!isUrl) return; // not a link: normal paste
+    e.preventDefault();
+    const value = draft.body;
+    const selected = value.slice(start, end);
+    const link = `[${selected}](${pasted})`;
+    update({ body: value.slice(0, start) + link + value.slice(end) });
+    requestAnimationFrame(() => {
+      el.focus();
+      const cursor = start + link.length;
+      el.setSelectionRange(cursor, cursor);
+    });
+  };
+
+  // Typing an opening bracket/quote while text is selected wraps the selection in the pair.
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const pairs: Record<string, string> = {
+      '(': ')',
+      '[': ']',
+      '{': '}',
+      '<': '>',
+      '"': '"',
+      "'": "'",
+      '`': '`',
+    };
+    const close = pairs[e.key];
+    if (!close) return;
+    const el = bodyRef.current;
+    if (!el) return;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    if (start === end) return; // no selection: type the character normally
+    e.preventDefault();
+    const value = draft.body;
+    const selected = value.slice(start, end);
+    update({ body: value.slice(0, start) + e.key + selected + close + value.slice(end) });
+    requestAnimationFrame(() => {
+      el.focus();
+      // keep the original text selected, now between the new pair
+      el.setSelectionRange(start + 1, start + 1 + selected.length);
+    });
+  };
+
   const toolbar: { label: string; title: string; action: () => void }[] = [
     { label: 'H2', title: 'Heading', action: () => applyFormat('## ', '', 'Section title') },
     { label: 'B', title: 'Bold', action: () => applyFormat('**', '**', 'bold text') },
@@ -232,10 +281,7 @@ const BlogEditor = () => {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold">Blog Editor</h1>
-            <p className="text-sm text-gray-500">
-              Draft a post, watch it render live, then export the markdown.
-              {savedAt && <span className="ml-1">· Saved {savedAt}</span>}
-            </p>
+            {savedAt && <p className="text-sm text-gray-500">Saved {savedAt}</p>}
           </div>
           <div className="flex flex-wrap gap-2">
             <button
@@ -249,12 +295,6 @@ const BlogEditor = () => {
               className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100"
             >
               Download .md
-            </button>
-            <button
-              onClick={() => copy(importLine, 'blog.ts import line')}
-              className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-100"
-            >
-              Copy import line
             </button>
             <button
               onClick={resetDraft}
@@ -334,8 +374,11 @@ const BlogEditor = () => {
               </div>
               <textarea
                 ref={bodyRef}
+                data-lenis-prevent
                 value={draft.body}
                 onChange={(e) => update({ body: e.target.value })}
+                onPaste={handlePaste}
+                onKeyDown={handleKeyDown}
                 spellCheck
                 className="h-[60vh] w-full resize-y rounded-b-md border border-gray-300 bg-white p-4 font-mono text-sm leading-relaxed focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
                 placeholder="Write your post in markdown..."
@@ -346,7 +389,10 @@ const BlogEditor = () => {
           {/* Preview column */}
           <div className="lg:sticky lg:top-24 lg:self-start">
             <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400">Live preview</div>
-            <div className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
+            <div
+              data-lenis-prevent
+              className="rounded-md border border-gray-200 bg-white p-5 sm:p-6 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto"
+            >
               <article>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 break-words">
                   {draft.title || 'Untitled post'}
@@ -365,21 +411,6 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        <details className="mt-8 rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-600">
-          <summary className="cursor-pointer font-medium text-gray-800">How to publish this post</summary>
-          <ol className="mt-3 list-decimal space-y-1 pl-5">
-            <li>
-              Click <span className="font-medium">Download .md</span> and drop the file into{' '}
-              <code className="rounded bg-gray-100 px-1">src/content/blog/</code>.
-            </li>
-            <li>
-              Click <span className="font-medium">Copy import line</span> and paste it into the{' '}
-              <code className="rounded bg-gray-100 px-1">blogPosts</code> object in{' '}
-              <code className="rounded bg-gray-100 px-1">src/lib/blog.ts</code>.
-            </li>
-            <li>Commit and deploy. The post appears at /blog and /blog/{effectiveSlug}.</li>
-          </ol>
-        </details>
       </div>
     </BlogLayout>
   );
