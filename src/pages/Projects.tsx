@@ -75,76 +75,139 @@ const Projects = () => {
       }, 250);
     }, 200);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target as HTMLElement;
+      if (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return;
+      if (e.key === 'ArrowLeft') {
+        changeExp((expIndex - 1 + experienceData.length) % experienceData.length, 'right');
+      } else if (e.key === 'ArrowRight') {
+        changeExp((expIndex + 1) % experienceData.length, 'left');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expIndex, expPhase]);
+
   // Project data
   const projectsData = {
     trailofbits: {
       title: "Trail of Bits Resource Page",
       description: "Aggregated resources, raw HTML/CSS",
-      tags: ["Javascript", "HTML", "CSS"],
       link: "https://www.trailofbits.com/opensource/",
     },
     proofgenerator: {
       title: "Logical Proof Generator",
       description: "Automatically generates logical proofs from custom grammatical inputs.",
-      tags: ["Scala"],
       link: "https://github.com/Yash1hi/Proof-Generator-3434",
     },
     medication: {
-      title: "Medication Management System",
-      description: "Automated Pill Container and App - 1st place T9Hacks 2025.",
-      tags: ["NodeJS", "Twilio", "PostgreSQL", "Arduino"],
+      title: "Medication Management",
+      description: "1st place T9Hacks 2025.",
       link: "https://www.linkedin.com/posts/suctuk_i-was-fortunate-to-participate-in-the-t9hacks-ugcPost-7298820077385039872-Lhxf",
     },
     sqeeble: {
       title: "Clean With Sqeeble",
-      description: "AI powered room cleaning app built in 2 hours for Hackbubu 2025.",
-      tags: ["NextJS", "React", "Gemini Nano Banana", "React-Camera-Kit"],
+      description: "1st place Hackbubu 2025.",
       link: "https://github.com/Yash1hi/Clean-With-Sqeeble",
     },
     wav: {
       title: "WAV music player",
       description: "Website for SolidAudio's WAV music player: a digital -> physical music player.",
-      tags: ["HTML/CSS"],
       link: "https://wavmusicplayer.com/",
     },
     nxsweep: {
       title: "NXSweep",
       description: "Vulnerability scanning script based on NX supply chain attack.",
-      tags: ["Typescript"],
       link: "https://www.yashthapliyal.com/blog/nxsweep",
     },
     scorecard: {
       title: "Scorecard",
-      description: "Simulation and evaluation platform.",
-      tags: ["NextJS", "PostgreSQL", "LiteLLM", "A Lot of Other Stuff TBH"],
+      description: "AI Agent Simulation Platform.",
       link: "https://www.scorecard.io/",
     },
     tiktokalytics: {
       title: "tiktokalytics",
       description: "Tiktok data analytics tool.",
-      tags: ["NextJS", "ShadCN"],
       link: "https://github.com/Yash1hi/tiktokalytics",
     },
     lookloom: {
       title: "LookLoom",
       description: "A digital pixel clothing closet.",
-      tags: ["NextJS", "Gemini Nano Banana", "PostgreSQL"],
       link: "https://lookloom.fit/",
+    },
+    flighttracker: {
+      title: "Frontier Flight Tracker",
+      description: "Unlimited flights, but no flights.",
+      link: null,
+    },
+    openclaw: {
+      title: "Personal Agent Setup",
+      description: "Finally, Jarvis.",
+      link: null,
+    },
+    homeserver: {
+      title: "Home Server",
+      description: "Basically wakanda.",
+      link: null,
     },
   };
 
   // Project display order - just reorder these IDs to change the order!
   const projectOrder = [
     'scorecard',
-    'lookloom',
     'sqeeble',
+    'medication',
+  ];
+
+  // Daily tooling display order
+  const dailyToolingOrder = [
+    'flighttracker',
+    'openclaw',
+    'homeserver',
+  ];
+
+  // Archived projects - kept in projectsData but not displayed. Move an ID back to projectOrder to show it again.
+  const archivedProjects = [
     'trailofbits',
     'nxsweep',
     'proofgenerator',
-    'medication',
     'tiktokalytics',
+    'lookloom',
     'wav',
   ];
+
+  const renderProjectCard = (projectId: string, index: number) => {
+    const project = projectsData[projectId];
+    const className = `border border-black p-6 transition-colors duration-150 group ${project.link ? 'hover:bg-black' : ''} ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`;
+    const style = { transition: `color 150ms, background-color 150ms, opacity 700ms ease ${100 + index * 75}ms, transform 700ms ease ${100 + index * 75}ms` };
+    const content = (
+      <>
+        <h2 className={`font-mono text-xl font-bold mb-3 ${project.link ? 'group-hover:text-white' : ''}`}>{project.title}</h2>
+        <p className={`text-sm text-gray-700 ${project.link ? 'group-hover:text-gray-200' : ''}`}>{project.description}</p>
+      </>
+    );
+
+    if (!project.link) {
+      return <div key={projectId} className={className} style={style}>{content}</div>;
+    }
+
+    return (
+      <a
+        key={projectId}
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        style={style}
+        onClick={() => { analytics.trackExternalLink(project.link, 'project'); posthog?.capture('project_link_clicked', { project_title: project.title, project_url: project.link }); }}
+      >
+        {content}
+      </a>
+    );
+  };
 
   return (
     <div className="min-h-screen">
@@ -225,39 +288,20 @@ const Projects = () => {
             </div>
           </div>
 
-          <h1 className={`font-mono text-4xl md:text-5xl font-bold mb-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>projects</h1>
+          <h1 className={`font-mono text-sm uppercase tracking-widest text-gray-500 mb-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>economically viable projects</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectOrder.map((projectId, index) => {
-              const project = projectsData[projectId];
-              return (
-                <a
-                  key={projectId}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`border border-black p-6 hover:bg-black transition-colors duration-150 group ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                  style={{ transition: `color 150ms, background-color 150ms, opacity 700ms ease ${100 + index * 75}ms, transform 700ms ease ${100 + index * 75}ms` }}
-                  onClick={() => { analytics.trackExternalLink(project.link, 'project'); posthog?.capture('project_link_clicked', { project_title: project.title, project_url: project.link }); }}
-                >
-                  <h2 className="font-mono text-xl font-bold mb-3 group-hover:text-white">{project.title}</h2>
-                  <p className="text-sm mb-4 text-gray-700 group-hover:text-gray-200">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="font-mono text-xs border border-black group-hover:border-white group-hover:text-white px-2 py-1"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </a>
-              );
-            })}
+            {projectOrder.map((projectId, index) => renderProjectCard(projectId, index))}
+          </div>
+
+          <h2 className={`font-mono text-sm uppercase tracking-widest text-gray-500 mt-16 mb-6 transition-all duration-700 delay-100 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>daily tooling</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dailyToolingOrder.map((projectId, index) => renderProjectCard(projectId, projectOrder.length + index))}
           </div>
         </div>
       </section>
+
     </div>
   );
 };
