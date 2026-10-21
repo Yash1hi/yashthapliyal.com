@@ -44,3 +44,6 @@ public/headshot.jpeg
 
 # backup files
 /image_backup/
+
+# Dev-only gallery layout editor state
+dev-photo-layout.json

@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
 import { usePostHog } from '@posthog/react';
+import { useDevPhotoLayout } from '@/components/dev/DevPhotoLayout';
 import photoDimensions from '@/data/photo-dimensions.json';
 import photoOrder from '@/data/photo-order.json';
 
@@ -111,6 +112,9 @@ const Photography = () => {
     setPhotos(photoList);
   }, []);
 
+  // Dev server only: drag to reorder, hover to move to top or remove.
+  const devLayout = useDevPhotoLayout(photos);
+
   const openModal = (photo: Photo) => {
     setSelectedPhoto(photo);
     setFullImageLoaded(false);
@@ -162,11 +166,12 @@ const Photography = () => {
         <div className={`flex items-start gap-6 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {Array.from({ length: columnCount }, (_, column) => (
             <div key={column} className="flex min-w-0 flex-1 flex-col gap-6">
-              {photos.filter((_, i) => i % columnCount === column).map((photo) => (
+              {devLayout.shown.filter((_, i) => i % columnCount === column).map((photo) => (
                 <div
                   key={photo.id}
                   className="group cursor-pointer"
                   onClick={() => openModal(photo)}
+                  {...devLayout.tileProps(photo)}
                 >
                   <div
                     className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
@@ -188,6 +193,7 @@ const Photography = () => {
                         {photo.filename.replace(/[-_]/g, ' ')}
                       </div>
                     </div>
+                    {devLayout.tileControls(photo)}
                   </div>
                 </div>
               ))}
@@ -234,6 +240,8 @@ const Photography = () => {
           </div>
         </div>
       )}
+
+      {devLayout.toolbar}
     </div>
   );
 };
