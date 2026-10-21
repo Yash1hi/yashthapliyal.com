@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from '@/components/Head';
 import { analytics } from '@/lib/analytics';
 import { usePostHog } from '@posthog/react';
+import photoDimensions from '@/data/photo-dimensions.json';
+import photoOrder from '@/data/photo-order.json';
 
 interface Photo {
   id: number;
@@ -11,12 +13,65 @@ interface Photo {
   filename: string;
 }
 
+// Written by scripts/generateThumbnails.js
+interface PhotoDimensions {
+  width: number;
+  height: number;
+  color: string;
+}
+
+const dimensionsOf = (filename: string): PhotoDimensions | undefined =>
+  (photoDimensions as Record<string, PhotoDimensions>)[filename];
+
+// Fits the lightbox photo on screen, leaving room above it for the close button.
+const lightboxStyle = (dims?: PhotoDimensions): React.CSSProperties | undefined =>
+  dims && {
+    aspectRatio: `${dims.width} / ${dims.height}`,
+    width: `min(80rem, 100vw - 3rem, (100vh - 9rem) * ${dims.width / dims.height})`,
+    backgroundColor: dims.color,
+  };
+
+// Starts transparent and fades in once loaded, instead of popping in.
+const FadeInImage = ({ className = '', ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  const ref = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (ref.current?.complete && ref.current.naturalWidth) setLoaded(true);
+  }, []);
+
+  return (
+    <img
+      ref={ref}
+      {...props}
+      onLoad={() => setLoaded(true)}
+      className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'}`}
+    />
+  );
+};
+
+// Matches Tailwind's md / lg / xl breakpoints.
+const columnsForWidth = (width: number) => (width >= 1280 ? 4 : width >= 1024 ? 3 : width >= 768 ? 2 : 1);
+
+const useColumnCount = () => {
+  const [count, setCount] = useState(() => columnsForWidth(window.innerWidth));
+
+  useEffect(() => {
+    const onResize = () => setCount(columnsForWidth(window.innerWidth));
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  return count;
+};
+
 const Photography = () => {
   const posthog = usePostHog();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [fullImageLoaded, setFullImageLoaded] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const columnCount = useColumnCount();
 
   useEffect(() => {
     setLoaded(true);
@@ -49,6 +104,10 @@ const Photography = () => {
       };
     });
 
+    // Curated order from src/data/photo-order.json; photos not listed there go last.
+    const rank = new Map((photoOrder as string[]).map((name, i) => [name, i]));
+    photoList.sort((a, b) => (rank.get(a.filename) ?? rank.size) - (rank.get(b.filename) ?? rank.size));
+
     setPhotos(photoList);
   }, []);
 
@@ -59,6 +118,8 @@ const Photography = () => {
     analytics.trackPhotoModalOpen(photo.filename);
     posthog?.capture('photo_modal_opened', { photo_filename: photo.filename });
   };
+
+  const selectedDimensions = selectedPhoto ? dimensionsOf(selectedPhoto.filename) : undefined;
 
   const closeModal = () => {
     setSelectedPhoto(null);
@@ -97,29 +158,39 @@ const Photography = () => {
           </p>
         </div>
 
-        {/* Masonry Photo Grid */}
-        <div className={`columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {photos.map((photo) => (
-            <div
-              key={photo.id}
-              className="break-inside-avoid mb-6 group cursor-pointer"
-              onClick={() => openModal(photo)}
-            >
-              <div className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <img
-                  src={photo.thumbnailUrl}
-                  alt={`Photography by Yash Thapliyal - ${photo.filename}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-auto object-cover group-hover:scale-110 transition-all duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  <div className="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-xl font-mono text-sm font-medium">
-                    {photo.filename.replace(/[-_]/g, ' ')}
+        {/* Masonry Photo Grid: photos are dealt into columns left to right, so the first ones form the top row */}
+        <div className={`flex items-start gap-6 transition-all duration-700 delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {Array.from({ length: columnCount }, (_, column) => (
+            <div key={column} className="flex min-w-0 flex-1 flex-col gap-6">
+              {photos.filter((_, i) => i % columnCount === column).map((photo) => (
+                <div
+                  key={photo.id}
+                  className="group cursor-pointer"
+                  onClick={() => openModal(photo)}
+                >
+                  <div
+                    className="relative overflow-hidden rounded-2xl bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                    style={{ backgroundColor: dimensionsOf(photo.filename)?.color }}
+                  >
+                    {/* width/height reserve the tile's shape before the image arrives */}
+                    <FadeInImage
+                      src={photo.thumbnailUrl}
+                      alt={`Photography by Yash Thapliyal - ${photo.filename}`}
+                      width={dimensionsOf(photo.filename)?.width}
+                      height={dimensionsOf(photo.filename)?.height}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto object-cover group-hover:scale-110 transition-all duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      <div className="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-xl font-mono text-sm font-medium">
+                        {photo.filename.replace(/[-_]/g, ' ')}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           ))}
         </div>
@@ -131,31 +202,31 @@ const Photography = () => {
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-6"
           onClick={closeModal}
         >
-          <div className="relative max-w-7xl max-h-full">
-            <button
-              onClick={closeModal}
-              className="absolute -top-16 right-0 font-mono text-white hover:text-gray-300 text-xl font-bold z-10 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-xl transition-colors duration-300"
-            >
-              CLOSE ×
-            </button>
+          <button
+            onClick={closeModal}
+            className="fixed top-6 right-6 font-mono text-white hover:text-gray-300 text-xl font-bold z-10 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-xl transition-colors duration-300"
+          >
+            CLOSE ×
+          </button>
 
-            <div className="relative">
-              {!fullImageLoaded && (
-                <div className="flex items-center justify-center bg-gray-800 rounded-2xl p-20">
-                  <div className="w-12 h-12 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                </div>
-              )}
+          <div
+            className="relative overflow-hidden rounded-2xl shadow-2xl"
+            style={lightboxStyle(selectedDimensions)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* The thumbnail is already loaded: show it straight away, then sharpen to the full photo */}
+            {selectedDimensions && (
+              <img src={selectedPhoto.thumbnailUrl} alt="" className="absolute inset-0 h-full w-full object-contain" />
+            )}
 
-              <img
-                src={selectedPhoto.imageUrl}
-                alt={`Photography by Yash Thapliyal - ${selectedPhoto.filename}`}
-                className={`max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl transition-opacity duration-300 ${
-                  fullImageLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                onClick={(e) => e.stopPropagation()}
-                onLoad={() => setFullImageLoaded(true)}
-              />
-            </div>
+            <img
+              src={selectedPhoto.imageUrl}
+              alt={`Photography by Yash Thapliyal - ${selectedPhoto.filename}`}
+              className={`relative block object-contain transition-opacity duration-300 ${
+                selectedDimensions ? 'h-full w-full' : 'max-w-[calc(100vw-3rem)] max-h-[calc(100vh-9rem)]'
+              } ${fullImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onLoad={() => setFullImageLoaded(true)}
+            />
 
             <div className="absolute bottom-6 left-6 font-mono text-white text-lg bg-black/70 backdrop-blur-sm px-6 py-3 rounded-xl font-semibold">
               {selectedPhoto.filename.replace(/[-_]/g, ' ')}

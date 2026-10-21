@@ -9,6 +9,8 @@ const __dirname = path.dirname(__filename);
 // Configuration
 const inputFolder = path.join(__dirname, '../public/Portfolio-Photos-WebP'); // Full size photos
 const thumbnailFolder = path.join(__dirname, '../public/Portfolio-Photos-Thumbnails');
+// Size and average color of every photo, so the gallery can reserve each tile's space before it loads
+const dimensionsManifest = path.join(__dirname, '../src/data/photo-dimensions.json');
 const supportedFormats = ['.webp', '.jpg', '.jpeg', '.png'];
 
 // Thumbnail settings
@@ -142,11 +144,31 @@ async function generateThumbnails() {
   }
   console.log(`\n✅ Thumbnails saved to: ${thumbnailFolder}`);
 
+  await writeDimensionsManifest();
+
   // Provide usage instructions
   console.log('\n💡 Usage Instructions:');
   console.log('1. Update your Photography.tsx component to use thumbnails for initial loading');
   console.log('2. Load full-size images when users click on thumbnails');
   console.log('3. Thumbnail naming convention: [original-name]-thumb.webp');
+}
+
+// Rebuilds the manifest from every thumbnail: { "<photo name>": { width, height, color } }
+async function writeDimensionsManifest() {
+  const thumbnails = (await getImageFiles(thumbnailFolder)).sort();
+  const manifest = {};
+
+  for (const file of thumbnails) {
+    const image = sharp(path.join(thumbnailFolder, file));
+    const { width, height } = await image.metadata();
+    const { channels } = await image.stats();
+    const color = '#' + channels.slice(0, 3).map(c => Math.round(c.mean).toString(16).padStart(2, '0')).join('');
+    manifest[path.parse(file).name.replace(/-thumb$/, '')] = { width, height, color };
+  }
+
+  await ensureDirectoryExists(path.dirname(dimensionsManifest));
+  fs.writeFileSync(dimensionsManifest, JSON.stringify(manifest, null, 2) + '\n');
+  console.log(`📐 Saved sizes for ${thumbnails.length} photos to: ${dimensionsManifest}`);
 }
 
 // Run the thumbnail generation
