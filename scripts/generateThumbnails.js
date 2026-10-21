@@ -15,7 +15,7 @@ const supportedFormats = ['.webp', '.jpg', '.jpeg', '.png'];
 const thumbnailOptions = {
   width: 800, // Max width for thumbnails
   height: 1200, // Max height for thumbnails
-  quality: 100, // Lower quality for faster loading
+  quality: 80, // Visually the same as 100 at this size, at a fraction of the bytes
   format: 'webp',
   fit: 'inside', // Maintain aspect ratio
   withoutEnlargement: true, // Don't upscale small images

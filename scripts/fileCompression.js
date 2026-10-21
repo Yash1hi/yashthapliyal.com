@@ -17,6 +17,7 @@ const compressionOptions = {
   format: 'webp', // Output format
   lossless: false, // Lossy compression for smaller file sizes
   effort: 6, // Compression effort (0-6, higher = better compression but slower)
+  maxDimension: 2560, // Longest edge in px: sharp in the lightbox on retina screens
 };
 
 async function ensureDirectoryExists(dirPath) {
@@ -36,6 +37,13 @@ async function compressImage(inputPath, outputPath) {
     console.log(`Compressing: ${filename}`);
 
     await sharp(inputPath)
+      .rotate()
+      .resize({
+        width: compressionOptions.maxDimension,
+        height: compressionOptions.maxDimension,
+        fit: 'inside',
+        withoutEnlargement: true,
+      })
       .webp({
         quality: compressionOptions.quality,
         lossless: compressionOptions.lossless,
