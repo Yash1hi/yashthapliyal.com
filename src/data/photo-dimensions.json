@@ -1,0 +1,442 @@
+{
+  "Alex-NYC-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#251509"
+  },
+  "Alex-Seattle-11": {
+    "width": 800,
+    "height": 1000,
+    "color": "#564646"
+  },
+  "Anna-Grad-124": {
+    "width": 800,
+    "height": 533,
+    "color": "#807f71"
+  },
+  "Anna-Grad-158": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9b807c"
+  },
+  "Anna-Grad-17": {
+    "width": 800,
+    "height": 1200,
+    "color": "#7a7167"
+  },
+  "Anna-Grad-185": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9c6f53"
+  },
+  "Anna-Grad-66": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9fa16f"
+  },
+  "BW_Denver_Fashion-1": {
+    "width": 800,
+    "height": 1000,
+    "color": "#261d29"
+  },
+  "BW_Denver_Fashion-4": {
+    "width": 800,
+    "height": 1000,
+    "color": "#191919"
+  },
+  "CS-Grad-108": {
+    "width": 800,
+    "height": 1200,
+    "color": "#b5a488"
+  },
+  "CS-Grad-131": {
+    "width": 800,
+    "height": 1200,
+    "color": "#a0876b"
+  },
+  "CS-Grad-28": {
+    "width": 800,
+    "height": 1200,
+    "color": "#606975"
+  },
+  "CU-Dance-Outside-10": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9f9789"
+  },
+  "CU-Dance-Photos-9": {
+    "width": 800,
+    "height": 1000,
+    "color": "#988c7f"
+  },
+  "CYB-Fashion-3": {
+    "width": 800,
+    "height": 1000,
+    "color": "#1d1725"
+  },
+  "CYB-Fashion-8": {
+    "width": 800,
+    "height": 1000,
+    "color": "#262012"
+  },
+  "CYB-Fashion-9": {
+    "width": 800,
+    "height": 1000,
+    "color": "#1c1b1f"
+  },
+  "Edited-Grad-102": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9a8e5a"
+  },
+  "Edited-Grad-152": {
+    "width": 800,
+    "height": 1200,
+    "color": "#86918d"
+  },
+  "Edited-Grad-43": {
+    "width": 800,
+    "height": 1200,
+    "color": "#b1948c"
+  },
+  "Elevation_No_Grain-12": {
+    "width": 800,
+    "height": 1000,
+    "color": "#100e0f"
+  },
+  "Elizabeth-Wedding-121": {
+    "width": 800,
+    "height": 1200,
+    "color": "#6a6862"
+  },
+  "Elizabeth-Wedding-26": {
+    "width": 800,
+    "height": 1200,
+    "color": "#797b7f"
+  },
+  "Elizabeth-Wedding-40": {
+    "width": 800,
+    "height": 533,
+    "color": "#a1998c"
+  },
+  "Elizabeth-Wedding-63": {
+    "width": 800,
+    "height": 1200,
+    "color": "#6c5f5f"
+  },
+  "Elizabeth-Wedding-9": {
+    "width": 800,
+    "height": 533,
+    "color": "#a7a8a7"
+  },
+  "Film-Coffee-1": {
+    "width": 800,
+    "height": 1184,
+    "color": "#888161"
+  },
+  "Film-Flag-20": {
+    "width": 795,
+    "height": 1200,
+    "color": "#8d816f"
+  },
+  "Film-SF-23": {
+    "width": 800,
+    "height": 530,
+    "color": "#18211a"
+  },
+  "Film-Vancouver-15": {
+    "width": 795,
+    "height": 1200,
+    "color": "#6c674f"
+  },
+  "Film-Vancouver-7": {
+    "width": 795,
+    "height": 1200,
+    "color": "#7b694b"
+  },
+  "Finished-20": {
+    "width": 800,
+    "height": 1000,
+    "color": "#958e7f"
+  },
+  "Finished-34": {
+    "width": 800,
+    "height": 533,
+    "color": "#a49891"
+  },
+  "Finished-62": {
+    "width": 800,
+    "height": 533,
+    "color": "#82746f"
+  },
+  "Finished-92": {
+    "width": 800,
+    "height": 1200,
+    "color": "#947e77"
+  },
+  "Finished-95": {
+    "width": 800,
+    "height": 533,
+    "color": "#948b87"
+  },
+  "Finished-Grad-121": {
+    "width": 800,
+    "height": 1200,
+    "color": "#bd9372"
+  },
+  "Finished-Grad-13": {
+    "width": 800,
+    "height": 533,
+    "color": "#b59178"
+  },
+  "Finished-Grad-138": {
+    "width": 800,
+    "height": 533,
+    "color": "#8e8d8f"
+  },
+  "Finished-Grad-146": {
+    "width": 800,
+    "height": 1200,
+    "color": "#b8ad94"
+  },
+  "Finished-Grad-16": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9a887f"
+  },
+  "Finished-Grad-160": {
+    "width": 800,
+    "height": 1200,
+    "color": "#b1a886"
+  },
+  "Finished-Grad-172": {
+    "width": 800,
+    "height": 1200,
+    "color": "#b2a391"
+  },
+  "Finished-Grad-221": {
+    "width": 800,
+    "height": 1200,
+    "color": "#a29d89"
+  },
+  "Finished-Grad-224": {
+    "width": 800,
+    "height": 1200,
+    "color": "#97918d"
+  },
+  "Finished-Grad-230": {
+    "width": 800,
+    "height": 1200,
+    "color": "#aba28c"
+  },
+  "Finished-Grad-246": {
+    "width": 800,
+    "height": 1200,
+    "color": "#927f5f"
+  },
+  "Finished-Grad-92": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9d7a66"
+  },
+  "Finished-Grad-96": {
+    "width": 800,
+    "height": 1200,
+    "color": "#c08c64"
+  },
+  "Fire-Escape-1": {
+    "width": 675,
+    "height": 1200,
+    "color": "#604b40"
+  },
+  "Headshots-105": {
+    "width": 800,
+    "height": 1200,
+    "color": "#645c5b"
+  },
+  "Headshots-152": {
+    "width": 800,
+    "height": 533,
+    "color": "#5a5255"
+  },
+  "Headshots-44": {
+    "width": 800,
+    "height": 1200,
+    "color": "#64656d"
+  },
+  "Initial-LightEdits-20": {
+    "width": 800,
+    "height": 1200,
+    "color": "#697176"
+  },
+  "Initial-LightEdits-24": {
+    "width": 800,
+    "height": 1200,
+    "color": "#767977"
+  },
+  "Initial-LightEdits-25": {
+    "width": 800,
+    "height": 1200,
+    "color": "#696c68"
+  },
+  "Kai-Grad-16": {
+    "width": 800,
+    "height": 1000,
+    "color": "#32322c"
+  },
+  "Kai-Grad-5": {
+    "width": 800,
+    "height": 1200,
+    "color": "#4b3c30"
+  },
+  "LSG-Headshots-17": {
+    "width": 800,
+    "height": 1200,
+    "color": "#7c726c"
+  },
+  "LSG-Headshots-42": {
+    "width": 800,
+    "height": 533,
+    "color": "#827773"
+  },
+  "LSG-Headshots-59": {
+    "width": 800,
+    "height": 533,
+    "color": "#868484"
+  },
+  "LSG-Headshots-66": {
+    "width": 800,
+    "height": 533,
+    "color": "#74716f"
+  },
+  "Masquerade-17": {
+    "width": 800,
+    "height": 1000,
+    "color": "#45202f"
+  },
+  "Mini-T15-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#9f989a"
+  },
+  "Mini-T15-14": {
+    "width": 800,
+    "height": 533,
+    "color": "#443a2f"
+  },
+  "NYC-Darwin-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#2b150a"
+  },
+  "NYC-Library-1": {
+    "width": 800,
+    "height": 1000,
+    "color": "#1f1407"
+  },
+  "NYC-Skyline-1": {
+    "width": 800,
+    "height": 1000,
+    "color": "#6e5c46"
+  },
+  "NYC-Sunset-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#664f33"
+  },
+  "No-Kings-10": {
+    "width": 800,
+    "height": 1000,
+    "color": "#534d4a"
+  },
+  "Nora-Grad-32": {
+    "width": 800,
+    "height": 1000,
+    "color": "#82841f"
+  },
+  "Nora-Grad-38": {
+    "width": 800,
+    "height": 1200,
+    "color": "#98988a"
+  },
+  "Ocean-Beach-Sunset-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#7c6144"
+  },
+  "Roam_Insta-7": {
+    "width": 800,
+    "height": 1000,
+    "color": "#0d0a07"
+  },
+  "Roam_Insta-8": {
+    "width": 800,
+    "height": 1200,
+    "color": "#120f0d"
+  },
+  "SF-Coast-Sunset-2": {
+    "width": 800,
+    "height": 1200,
+    "color": "#5c4353"
+  },
+  "SF-Walk-1": {
+    "width": 800,
+    "height": 1200,
+    "color": "#635e5b"
+  },
+  "SF-Walk-2": {
+    "width": 800,
+    "height": 1200,
+    "color": "#584d48"
+  },
+  "Sam-SF-3": {
+    "width": 800,
+    "height": 1200,
+    "color": "#57524a"
+  },
+  "Sam-SF-5": {
+    "width": 800,
+    "height": 1200,
+    "color": "#817f6a"
+  },
+  "Sugar_Mill-3": {
+    "width": 800,
+    "height": 1000,
+    "color": "#64482a"
+  },
+  "Sugar_Mill-4": {
+    "width": 800,
+    "height": 1000,
+    "color": "#4a3726"
+  },
+  "Sugar_Mill-6": {
+    "width": 800,
+    "height": 1000,
+    "color": "#786149"
+  },
+  "Trio_PIc": {
+    "width": 800,
+    "height": 1000,
+    "color": "#69605b"
+  },
+  "Yash-11": {
+    "width": 800,
+    "height": 533,
+    "color": "#433a48"
+  },
+  "Yash-15": {
+    "width": 800,
+    "height": 1200,
+    "color": "#381a0e"
+  },
+  "Yash-25": {
+    "width": 800,
+    "height": 533,
+    "color": "#5a5050"
+  },
+  "Yash-8": {
+    "width": 800,
+    "height": 1200,
+    "color": "#48372e"
+  }
+}
