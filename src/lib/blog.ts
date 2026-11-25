@@ -15,7 +15,8 @@ const blogPosts = {
   'opus-4-7-web-design': () => import('@/content/blog/opus-4-7-web-design.md?raw'),
   'do-we-just-want-slaves': () => import('@/content/blog/do-we-just-want-slaves.md?raw'),
   'home-server-setup': () => import('@/content/blog/home-server-setup.md?raw'),
-  'personal-agent-setup': () => import('@/content/blog/personal-agent-setup.md?raw')
+  'personal-agent-setup': () => import('@/content/blog/personal-agent-setup.md?raw'),
+  'thoughts-on-the-current-state-of-the-world': () => import('@/content/blog/thoughts-on-the-current-state-of-the-world.md?raw')
 };
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
