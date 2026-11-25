@@ -61,7 +61,7 @@ const BlogPost = () => {
           <div className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-8 break-words">
             {new Date(post.date).toLocaleDateString()} • {post.tags.join(', ')}
           </div>
-          <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-xl [&>h1]:sm:text-2xl [&>h2]:mt-6 [&>h2]:sm:mt-8 [&>h2]:mb-3 [&>h2]:sm:mb-4 [&>h2]:text-lg [&>h2]:sm:text-xl [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:sm:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-4 [&>ol]:sm:ml-6 [&>ol]:mb-4 [&>li]:mb-2 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold [&>a]:break-words [&>pre]:overflow-x-auto [&>pre]:max-w-full [&>code]:break-words">
+          <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none [&>p]:leading-loose [&>p]:mb-4 [&>h1]:mb-4 [&>h1]:mt-8 [&>h1]:font-mono [&>h1]:text-xl [&>h1]:sm:text-2xl [&>h2]:mt-6 [&>h2]:sm:mt-8 [&>h2]:mb-3 [&>h2]:sm:mb-4 [&>h2]:text-lg [&>h2]:sm:text-xl [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:sm:ml-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:ml-4 [&>ol]:sm:ml-6 [&>ol]:mb-4 [&_li]:my-3 [&_li]:leading-[1.8] [&_li]:pl-1 [&_li::marker]:font-mono [&_li::marker]:text-gray-400 [&>a]:text-gray-800 [&>a]:underline [&>a]:decoration-2 [&>a]:underline-offset-2 [&>a]:hover:text-black [&>a]:hover:decoration-gray-400 [&>a]:transition-all [&>a]:!font-bold [&>a]:break-words [&>pre]:overflow-x-auto [&>pre]:max-w-full [&>code]:break-words">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
