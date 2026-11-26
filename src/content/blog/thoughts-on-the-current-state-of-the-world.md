@@ -13,7 +13,7 @@ I think that this month has been particularly jarring to my psyche when watching
 
 3. [Gemini 4 Neon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/), Grokbot, and Opus 5.5/Fable 5.2 gradually becoming easier to use and more powerful than I've seen before. 
 
-4. [Formalized Lean Proof of the Riemann Hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) (Law(?)), as well as several other notable math problems.
+4. [Formalized Lean Proof of the Riemann Hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) ([Alpöge](https://en.wikipedia.org/wiki/Alp%C3%B6ge%27s_proof_of_the_Riemann_hypothesis)), as well as several other notable math problems.
 
 5. [AI generated long form video animations](https://research.google/blog/coherent-long-form-video-generation) and realistic 3d modeling.
 
