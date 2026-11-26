@@ -7,25 +7,25 @@ tags: []
 
 I think that this month has been particularly jarring to my psyche when watching the state of the world change. I would love to believe that the generations before me have meaningful advice, but I don't think they've ever dealt with such exponential growth before.
 
-1. The midterms have cause the USA to swing blue in both The House and the Senate. There are a couple of notable DSA leaders who I can see swinging the way American politics works in the long run (Zohran Mamdani, Abdul El-Sayed, Nithya Raman).
+1. The midterms have cause the USA to [swing blue in both The House and the Senate](https://www.nbcwashington.com/elections/election-day-after-2026-midterms-congress-results-live-updates/4177248/). There are a couple of notable DSA leaders who I can see swinging the way American politics works in the long run (Zohran Mamdani, Abdul El-Sayed, Nithya Raman).
 
-2. Flooding in San Francisco, particularly my district of the Mission, unlike anything seen before. I'd like to believe this is because of the Super El Niño, but part of me is drawn towards the very real effects of climate change.
+2. [Flooding in San Francisco](https://sfist.com/2026/11/18/waymo-blocks-traffic-on-flooded-oak-street-as-multiple-parts-of-san-francisco-see-flooding/), particularly my district of the Mission, unlike anything seen before. I'd like to believe this is because of the Super El Niño, but part of me is drawn towards the very real effects of climate change.
 
-3. Gemini 4 Neon, Grokbot, and Opus 5.5/Fable 5.2 gradually becoming easier to use and more powerful than I've seen before. 
+3. [Gemini 4 Neon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/), Grokbot, and Opus 5.5/Fable 5.2 gradually becoming easier to use and more powerful than I've seen before. 
 
-4. Formalized Lean Proof of the Riemann Hypothesis (Law(?)), as well as several other notable math problems.
+4. [Formalized Lean Proof of the Riemann Hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) (Law(?)), as well as several other notable math problems.
 
-5. AI generated long form video animations and realistic 3d modeling.
+5. [AI generated long form video animations](https://research.google/blog/coherent-long-form-video-generation) and realistic 3d modeling.
 
-6. Anthropic IPO.
+6. [Anthropic IPO](https://www.aljazeera.com/economy/2026/11/19/anthropic-starts-trading-in-the-us-after-blockbuster-ipo).
 
-7. Jensen Huang erasing and bringing back a couple trillion in market cap through his affairs.
+7. Jensen Huang [erasing and bringing back a couple trillion in market cap](https://www.cnn.com/2026/11/23/markets/us-stocks-rebound-intl) through his affairs.
 
-8. GTA 6 has been released, alongside PC decompilation being nearly complete in less than 3 days.
+8. GTA 6 has been released, alongside [PC decompilation](https://www.heise.de/en/news/After-executable-leak-modders-work-on-unofficial-GTA-6-PC-port-11535595.html) being nearly complete in less than 3 days.
 
-9. Mimikyu93 bot + Solving VGC pokemon.
+9. [mikumiku37 bot](https://x.com/shaokthx/status/2106149313466564815) + Solving VGC pokemon.
 
-10. PHP2Shell, and various other security vulnerabilities across all platforms.
+10. [PHP2Shell](https://en.wikipedia.org/wiki/PHP2Shell), and various other security vulnerabilities across all platforms.
 
 I am in no way saying that these are all of the same value in my head, just that they have all wildly moved me in one way or another. They have all also happened relatively quickly, slow enough to let me understand them but fast enough to not let me process their implications. I'm not sure where the world will go from here to be honest. At times, it feels like I'm sitting at the forefront of what is the norm, and most of the world has not caught up yet. I don't believe in the old fucks in charge of the US to do anything useful in this field, where disinformation is rampant and unbiased advisorship seems scarce.
 
