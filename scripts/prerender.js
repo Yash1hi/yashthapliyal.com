@@ -6,7 +6,8 @@ import frontMatter from 'front-matter';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SITE_URL = 'https://yashthapliyal.com';
+// The apex domain redirects here, so this is the address search engines should index.
+const SITE_URL = 'https://www.yashthapliyal.com';
 const DEFAULT_IMAGE = '/Social_Media_Preview_portfolio.png';
 const DIST_DIR = path.join(__dirname, '../dist');
 const BLOG_DIR = path.join(__dirname, '../src/content/blog');
@@ -68,10 +69,9 @@ const replaceMeta = (template, { title, description, image, url, type }) => {
     /<meta property="og:image" content="[^"]*"\s*\/>/,
     `<meta property="og:image" content="${i}" />`
   );
-  html = html.replace(
-    /<link rel="canonical" href="[^"]*"\s*\/>/,
-    `<link rel="canonical" href="${u}" />`
-  );
+  // The root index.html carries no canonical link: the server falls back to it for
+  // unknown paths, and a fixed canonical there would point every such URL at the home page.
+  html = html.replace('</head>', `  <link rel="canonical" href="${u}" />\n  </head>`);
   html = html.replace(
     /<meta property="og:url" content="[^"]*"\s*\/>/,
     `<meta property="og:url" content="${u}" />`

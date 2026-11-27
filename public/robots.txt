@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://yashthapliyal.com/sitemap.xml
+Sitemap: https://www.yashthapliyal.com/sitemap.xml
