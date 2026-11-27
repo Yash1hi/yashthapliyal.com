@@ -13,7 +13,7 @@ interface ThrownBubble {
   throwStartTime: number;
 }
 
-const ROLES = ['Software Developer', 'Hacker', 'Photographer', 'Designer', 'Scholar', 'Musician', 'Creative', 'Researcher', 'Pokemon Trainer', 'Maker', 'Wizard', 'Traveler', 'Coffee Addict', 'Fashionista', 'Speedrunner', 'Buff', 'Dungeon Master', 'GOAT', 'Chud'];
+const ROLES = ['Evals Engineer', 'Software Developer', 'Hacker', 'Photographer', 'Designer', 'Scholar', 'Musician', 'Creative', 'Researcher', 'Pokemon Trainer', 'Maker', 'Wizard', 'Traveler', 'Coffee Addict', 'Fashionista', 'Speedrunner', 'Buff', 'Dungeon Master', 'GOAT', 'Chud'];
 const ROLE_INTERVAL_MS = 2000;
 const FADE_DURATION_MS = 1000;
 const FADE_DELAY_MS = (ROLES.length - 1) * ROLE_INTERVAL_MS;

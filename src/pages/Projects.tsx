@@ -125,7 +125,7 @@ const Projects = () => {
     },
     scorecard: {
       title: "Scorecard",
-      description: "AI Agent Simulation Platform.",
+      description: "AI agent evals and simulation platform. Founding engineer: tracing, LLM-as-judge metrics, monitoring.",
       link: "https://www.scorecard.io/",
     },
     tiktokalytics: {

@@ -36,7 +36,7 @@ const escapeHtml = (s) =>
 const STATIC_ROUTES = [
   { path: '/projects', title: 'Projects | Yash Thapliyal', description: 'Software, hardware, and creative projects by Yash Thapliyal.' },
   { path: '/yash1photos', title: 'Photography | Yash Thapliyal', description: 'Photography portfolio by Yash Thapliyal.' },
-  { path: '/blog', title: 'Blog | Yash Thapliyal', description: 'Writing on software, hacking, travel, and side projects by Yash Thapliyal.' },
+  { path: '/blog', title: 'Blog | Yash Thapliyal', description: 'Writing on AI evals, agents, software, hacking, and side projects by Yash Thapliyal.' },
   { path: '/contact', title: 'Contact | Yash Thapliyal', description: 'Get in touch with Yash Thapliyal.' },
   { path: '/coffee-tracker', title: 'Coffee Tracker | Yash Thapliyal', description: 'Tracking coffee consumption — a personal data project.' },
   { path: '/music', title: 'Music | Yash Thapliyal', description: 'What I am currently listening to.' },
@@ -67,6 +67,10 @@ const replaceMeta = (template, { title, description, image, url, type }) => {
   html = html.replace(
     /<meta property="og:image" content="[^"]*"\s*\/>/,
     `<meta property="og:image" content="${i}" />`
+  );
+  html = html.replace(
+    /<link rel="canonical" href="[^"]*"\s*\/>/,
+    `<link rel="canonical" href="${u}" />`
   );
   html = html.replace(
     /<meta property="og:url" content="[^"]*"\s*\/>/,
@@ -108,8 +112,11 @@ const main = () => {
   }
   const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
+  const sitemapUrls = [SITE_URL + '/'];
+
   console.log('Prerendering static routes...');
   for (const route of STATIC_ROUTES) {
+    sitemapUrls.push(SITE_URL + route.path);
     const html = replaceMeta(template, {
       title: route.title,
       description: route.description,
@@ -143,7 +150,15 @@ const main = () => {
       type: 'article',
     });
     writeRoute(`/blog/${slug}`, html);
+    sitemapUrls.push(url);
   }
+
+  const sitemap =
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    sitemapUrls.map((u) => `  <url><loc>${escapeHtml(u)}</loc></url>`).join('\n') +
+    '\n</urlset>\n';
+  fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemap);
+  console.log(`  wrote sitemap.xml (${sitemapUrls.length} urls)`);
 
   console.log('Prerender complete.');
 };

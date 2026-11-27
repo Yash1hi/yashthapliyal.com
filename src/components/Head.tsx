@@ -8,8 +8,8 @@ interface HeadProps {
 }
 
 const Head = ({
-  title = "Yash Thapliyal | Developer & Creative",
-  description = "Personal portfolio of Yash Thapliyal, showcasing software development, cyber security, photography, and design work.",
+  title = "Yash Thapliyal | AI Evals & Agent Simulation Engineer",
+  description = "Yash Thapliyal is a founding software engineer at Scorecard in San Francisco, building evaluations (evals) and simulation for AI agents: tracing, LLM-as-judge metrics, monitoring and benchmarks.",
   image = "/Social_Media_Preview_portfolio.png",
   url = "https://yashthapliyal.com"
 }: HeadProps) => {
